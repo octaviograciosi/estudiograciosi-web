@@ -88,3 +88,4 @@
   - Ícono de pestaña con las iniciales "EG", como el cartel de la puerta.
   - Vista previa al compartir el enlace (Open Graph), con la foto de la recepción.
   - `robots.txt`.
+- **Repositorio:** el proyecto pasa a GitHub (`octaviograciosi/estudiograciosi-web`), conectado a Netlify; cada push a `main` publica solo. El formulario queda activado en Netlify (Octavio confirmó que llegó la consulta de prueba). Se suma `CLAUDE.md`, con el instructivo original de Octavio y, arriba, el estado actual del proyecto.
