@@ -1,0 +1,43 @@
+{
+  "_nota": "Fuente única de datos del estudio. Todo valor que empieza con [PENDIENTE] debe confirmarlo Octavio antes de publicar. Datos confirmados por Octavio el 2026-10-07: nombre, domicilio, teléfonos, correo y áreas de práctica.",
+  "nombre": "Estudio Graciosi",
+  "titular": "Octavio Graciosi",
+  "cuit": "[PENDIENTE: confirmar si se publica] 20371576380",
+  "domicilio": {
+    "calle": "Don Bosco 137, Piso 1, Oficina 3",
+    "codigoPostal": "[PENDIENTE: confirmar] H3500AHB",
+    "ciudad": "Resistencia",
+    "provincia": "Chaco",
+    "pais": "Argentina"
+  },
+  "telefonos": [
+    { "numero": "+54 9 11 6214-2011", "whatsapp": true },
+    { "numero": "+54 9 3624 856500", "whatsapp": "[PENDIENTE: confirmar]" }
+  ],
+  "correos": ["estudiograciosi@gmail.com"],
+  "horarios": "[PENDIENTE: confirmar]",
+  "provincias": [
+    { "nombre": "Chaco", "matricula": "[PENDIENTE: confirmar]" },
+    { "nombre": "Corrientes", "matricula": "[PENDIENTE: confirmar]" },
+    { "nombre": "Formosa", "matricula": "[PENDIENTE: confirmar]" },
+    { "nombre": "Misiones", "matricula": "[PENDIENTE: confirmar]" },
+    { "nombre": "Santa Fe", "matricula": "[PENDIENTE: confirmar]" },
+    { "nombre": "Córdoba", "matricula": "[PENDIENTE: confirmar]" }
+  ],
+  "areasDePractica": [
+    { "id": "gestion-temprana", "nombre": "Gestión temprana", "url": "/areas/gestion-temprana" },
+    { "id": "mora-tardia", "nombre": "Mora tardía", "url": "/areas/mora-tardia" },
+    { "id": "ejecuciones-judiciales", "nombre": "Ejecuciones judiciales", "url": "/areas/ejecuciones-judiciales" },
+    { "id": "factoring", "nombre": "Factoring", "url": "/areas/factoring" }
+  ],
+  "corresponsalia": "[PENDIENTE: confirmar] si se presenta como área propia o solo como vía de contacto",
+  "equipo": [
+    {
+      "nombre": "Octavio Graciosi",
+      "cargo": "Titular",
+      "formacion": "[PENDIENTE: confirmar]",
+      "foto": "[PENDIENTE: foto]"
+    }
+  ],
+  "avisoPublicidadProfesional": "[PENDIENTE: confirmar texto]"
+}

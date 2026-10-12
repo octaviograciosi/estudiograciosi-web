@@ -1,0 +1,155 @@
+/* Versión 1: misma estética que el sitio actual en Wix.
+   Medidas y colores relevados del sitio publicado (8/10/2026). */
+:root {
+  --navy: #10284D;
+  --azul: #015989;
+  --celeste: #0285CE;       /* botones y enlace activo */
+  --gris-tarjeta: #F0F2F4;
+  --gris-pie: #7A8BA6;
+  --blanco: #FFFFFF;
+  --pendiente-bg: #FFF6D6;
+  --pendiente-borde: #B98900;
+  --serif: "Crimson Pro", Georgia, "Times New Roman", serif;           /* reemplaza a Kepler (Wix) */
+  --cursiva: "Playfair Display", Didot, "Bodoni 72", Georgia, serif;  /* reemplaza a Didot italic (Wix) */
+  --sans: "Figtree", "Helvetica Neue", Arial, sans-serif;             /* reemplaza a Proxima Nova (Wix) */
+  --ancho: 1206px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--blanco); color: var(--navy); font-family: var(--sans); font-size: 15px; line-height: 1.6; }
+h1, h2, h3 { margin: 0; font-weight: 400; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--celeste); outline-offset: 3px; }
+.contenedor { max-width: var(--ancho); margin: 0 auto; padding-inline: 16px; }
+.salto { position: absolute; left: -9999px; }
+.salto:focus { left: 16px; top: 16px; z-index: 100; background: var(--blanco); padding: 8px 12px; }
+.pendiente { background: var(--pendiente-bg); border: 1px dashed var(--pendiente-borde); color: #5C4400; font-family: var(--sans); font-style: normal; font-size: 13px; line-height: 1.4; padding: 1px 6px; display: inline-block; }
+.revision { background: #1d1d1d; color: #fff; font-size: 13px; }
+.revision .contenedor { padding-block: 6px; }
+
+/* Encabezado */
+.encabezado { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--blanco); box-shadow: 0 2px 4px rgba(16, 40, 77, .14); }
+/* Encabezado al estilo Clifford Chance: marca grande arriba, menú en una fila debajo */
+.encabezado .contenedor { padding-block: 34px 0; }
+.fila-marca { display: flex; align-items: center; gap: 20px; }
+.marca { font-family: var(--serif); font-weight: 400; font-size: 42px; line-height: 1; letter-spacing: -0.005em; color: var(--navy); text-decoration: none; white-space: nowrap; }
+.bajada { font-size: 15px; line-height: 1; letter-spacing: .06em; color: var(--navy); position: relative; top: 3px; }
+.fila-menu { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 22px 18px; }
+.menu { display: flex; align-items: center; gap: 44px; list-style: none; margin: 0; padding: 0; }
+.menu a { font-size: 17px; text-decoration: none; color: var(--navy); }
+.menu > li > a { padding-block: 6px; border-bottom: 2px solid transparent; }
+.menu a:hover, .menu a[aria-current="page"] { color: var(--celeste); }
+.menu > li > a:hover, .menu > li > a[aria-current="page"] { border-bottom-color: var(--celeste); }
+.atajo { font-size: 17px; color: var(--navy); text-decoration: none; white-space: nowrap; }
+.atajo:hover { color: var(--celeste); }
+.con-submenu { position: relative; display: flex; align-items: center; gap: 2px; }
+.abrir-submenu { display: none; background: none; border: 0; padding: 6px 4px; cursor: pointer; color: var(--navy); }
+.submenu { position: absolute; top: calc(100% + 8px); left: -18px; min-width: 230px; margin: 0; padding: 10px 0; list-style: none; background: var(--blanco); box-shadow: 0 6px 18px rgba(16, 40, 77, .16); opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s, transform .18s, visibility .18s; z-index: 30; }
+.submenu::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 10px; }
+.submenu a { display: block; padding: 9px 18px; font-size: 15px; white-space: nowrap; }
+.submenu a:hover { background: var(--gris-tarjeta); }
+.con-submenu:hover .submenu, .con-submenu:focus-within .submenu, .submenu.abierto { opacity: 1; visibility: visible; transform: none; }
+[id] { scroll-margin-top: 170px; }
+@media (max-width: 900px) {
+  .encabezado .contenedor { padding-block: 24px 0; }
+  .marca { font-size: 32px; }
+  .menu { gap: 30px; }
+  .fila-menu { padding-block: 16px 14px; }
+}
+@media (max-width: 600px) {
+  .encabezado .contenedor { padding-block: 16px 0; }
+  .marca { font-size: 25px; }
+  .bajada { font-size: 12px; top: 2px; }
+  .fila-marca { gap: 12px; }
+  .menu { gap: 22px; }
+  .menu a { font-size: 16px; }
+  .atajo { display: none; }   /* el WhatsApp sigue en Contacto y en el pie */
+  .submenu { left: -12px; min-width: 210px; }
+  [id] { scroll-margin-top: 110px; }
+}
+
+/* Botón (como el de Wix: rectangular, celeste) */
+.boton { display: inline-flex; align-items: center; justify-content: center; min-width: 157px; min-height: 40px; padding: 8px 24px; background: var(--celeste); color: var(--blanco); font-family: var(--sans); font-size: 15px; text-decoration: none; border: 0; cursor: pointer; transition: background-color .2s; }
+.boton:hover { background: var(--azul); }
+
+/* Portada: foto de la oficina con recuadros azul marino superpuestos */
+.portada { position: relative; padding-bottom: 320px; }
+.portada .foto { position: relative; height: 1005px; max-width: var(--ancho); margin: 0 auto; }
+.portada .foto img { width: 100%; height: 100%; object-fit: cover; }
+.portada .foto::after { content: ""; position: absolute; inset: 0; background: rgba(205, 222, 238, .35); }
+.recuadro { background: var(--navy); color: var(--blanco); position: absolute; z-index: 1; }
+.recuadro-lema { left: 50%; top: 293px; transform: translateX(-50%); width: min(780px, calc(100% - 32px)); padding: 52px 64px; text-align: center; }
+.recuadro-lema h1 { font-family: var(--serif); font-size: 34px; line-height: 1.12; }
+.recuadro-presentacion { right: max(16px, calc((100% - var(--ancho)) / 2 + 66px)); top: 800px; width: min(600px, calc(100% - 32px)); padding: 56px 78px 58px; }
+.recuadro-presentacion h2 { font-family: var(--serif); font-size: 44px; line-height: 1.02; margin-bottom: 40px; }
+.recuadro-presentacion p { margin: 0 0 56px; font-size: 14px; line-height: 1.72; }
+@media (max-width: 900px) {
+  .portada { padding-bottom: 56px; }
+  .portada .foto { height: 420px; }
+  .recuadro, .recuadro-lema { position: relative; transform: none; left: auto; right: auto; top: auto; }
+  .recuadro-lema { margin: -140px auto 0; padding: 32px 24px; }
+  .recuadro-presentacion { margin: 16px auto 0; }
+  .recuadro-lema h1 { font-size: 26px; }
+  .recuadro-presentacion { padding: 40px 28px; }
+  .recuadro-presentacion h2 { font-size: 34px; margin-bottom: 24px; }
+  .recuadro-presentacion p { margin-bottom: 32px; }
+}
+
+/* Servicios */
+.servicios { padding-block: 72px 100px; }
+.servicios h2 { font-family: var(--serif); font-size: 44px; text-align: center; margin-bottom: 60px; }
+.tarjetas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+@media (max-width: 1000px) { .tarjetas { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .tarjetas { grid-template-columns: 1fr; } }
+.tarjeta { background: var(--gris-tarjeta); padding: 36px 26px 60px; text-align: center; min-width: 0; }
+.tarjeta .numero { font-family: var(--cursiva); font-style: italic; font-size: 53px; line-height: 1; display: inline-block; padding-bottom: 6px; border-bottom: 1px solid var(--navy); margin-bottom: 44px; }
+.tarjeta h3 { font-family: var(--cursiva); font-style: italic; font-size: 22px; color: var(--azul); margin-bottom: 22px; }
+.tarjeta p { margin: 0; font-size: 14px; line-height: 1.62; }
+
+/* Visión */
+.vision { text-align: center; padding-block: 20px 60px; }
+.vision .comillas { font-family: var(--serif); font-size: 110px; line-height: .6; height: 46px; display: block; }
+.vision blockquote { margin: 24px auto 34px; max-width: 700px; font-family: var(--serif); font-size: 32px; line-height: 1.12; }
+.vision .etiqueta { color: var(--azul); font-size: 17px; }
+@media (max-width: 700px) { .vision blockquote { font-size: 25px; } }
+
+.galeria { padding-bottom: 66px; }
+.galeria .contenedor > div { position: relative; }
+.galeria img { width: 100%; height: auto; }
+.galeria .contenedor > div::after { content: ""; position: absolute; inset: 0; background: rgba(205, 222, 238, .3); }
+
+/* Contacto */
+.contacto { background: var(--navy); color: var(--blanco); padding-block: 84px 120px; }
+.contacto h1 { font-family: var(--serif); font-size: 44px; text-align: center; margin-bottom: 52px; }
+.contacto .intro { max-width: 720px; margin: 0 auto 70px; text-align: center; line-height: 1.6; }
+.contacto-grilla { display: grid; grid-template-columns: 420px 1fr; gap: 125px; max-width: 920px; margin: 0 auto; }
+@media (max-width: 900px) { .contacto-grilla { grid-template-columns: 1fr; gap: 48px; } }
+.formulario { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 18px; min-width: 0; }
+.formulario .ancho { grid-column: 1 / -1; }
+.formulario label { position: absolute; left: -9999px; }
+.formulario input, .formulario select, .formulario textarea { width: 100%; font: inherit; color: var(--blanco); background: transparent; border: 1px solid var(--blanco); border-radius: 0; padding: 8px 12px; }
+.formulario select option { color: var(--navy); }
+.formulario ::placeholder { color: var(--blanco); opacity: 1; }
+.formulario textarea { min-height: 149px; resize: vertical; }
+.formulario .boton { width: 100%; }
+.formulario .aviso { font-size: 13px; color: #C9D3E2; margin: 2px 0 0; line-height: 1.5; }
+.datos { line-height: 1.8; min-width: 0; }
+.datos p { margin: 0 0 4px; }
+.datos a { color: var(--blanco); }
+.mapa { display: block; width: 100%; height: 480px; border: 0; }
+
+/* Pie */
+.pie { background: var(--navy); color: var(--blanco); padding-block: 44px 64px; }
+.pie .contenedor { display: grid; grid-template-columns: 1fr 320px; gap: 40px; }
+@media (max-width: 760px) { .pie .contenedor { grid-template-columns: 1fr; } }
+.pie .marca { color: var(--blanco); font-size: 24px; }
+.pie .bajada { color: var(--blanco); margin-left: 18px; }
+.pie .derechos { color: var(--gris-pie); font-size: 15px; margin-top: 44px; }
+.pie address { font-style: normal; font-size: 15px; display: grid; gap: 14px; }
+.pie address a { color: var(--blanco); text-decoration: none; }
+.pie address a:hover { text-decoration: underline; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+.menu > li:last-child .submenu { left: auto; right: -12px; }

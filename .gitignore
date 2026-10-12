@@ -1,0 +1,6 @@
+# Vistas previas locales (se regeneran con build.py)
+v1-retoque/preview/
+v2-nueva-posible/preview/
+v2-nueva-posible/dist/
+*.zip
+__pycache__/

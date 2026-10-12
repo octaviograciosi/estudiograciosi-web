@@ -1,0 +1,2 @@
+[build]
+  publish = "v1-retoque/dist"

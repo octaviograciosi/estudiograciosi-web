@@ -1,0 +1,85 @@
+{
+  "_nota": "Fuente única de datos del estudio. Todo valor que empieza con [PENDIENTE] debe confirmarlo Octavio antes de publicar. Datos confirmados por Octavio el 2026-10-07: nombre, domicilio, teléfonos, correo y áreas de práctica. 2026-10-08: Octavio redefine las áreas: Recupero crediticio (agrupa gestión temprana, mora tardía y ejecuciones judiciales), Derecho comercial, Derecho laboral y Factoring. 2026-10-09: Octavio confirma el CUIT 20371576380 (se publica), el código postal H3500AHB y el número +54 9 3624 856500. Los horarios no se publican. 2026-10-12: Octavio confirma que +54 9 3624 856500 tiene WhatsApp.",
+  "nombre": "Estudio Graciosi",
+  "titular": "Octavio Graciosi",
+  "cuit": "20371576380",
+  "domicilio": {
+    "calle": "Don Bosco 137, Piso 1, Oficina 3",
+    "codigoPostal": "H3500AHB",
+    "ciudad": "Resistencia",
+    "provincia": "Chaco",
+    "pais": "Argentina"
+  },
+  "telefonos": [
+    {
+      "numero": "+54 9 11 6214-2011",
+      "whatsapp": true
+    },
+    {
+      "numero": "+54 9 3624 856500",
+      "whatsapp": true
+    }
+  ],
+  "correos": [
+    "estudiograciosi@gmail.com"
+  ],
+  "horarios": null,
+  "provincias": [
+    {
+      "nombre": "Chaco",
+      "matricula": "[PENDIENTE: confirmar]"
+    },
+    {
+      "nombre": "Corrientes",
+      "matricula": "[PENDIENTE: confirmar]"
+    },
+    {
+      "nombre": "Formosa",
+      "matricula": "[PENDIENTE: confirmar]"
+    },
+    {
+      "nombre": "Misiones",
+      "matricula": "[PENDIENTE: confirmar]"
+    },
+    {
+      "nombre": "Santa Fe",
+      "matricula": "[PENDIENTE: confirmar]"
+    },
+    {
+      "nombre": "Córdoba",
+      "matricula": "[PENDIENTE: confirmar]"
+    }
+  ],
+  "areasDePractica": [
+    {
+      "id": "recupero-crediticio",
+      "nombre": "Recupero crediticio",
+      "url": "/areas/recupero-crediticio"
+    },
+    {
+      "id": "derecho-comercial",
+      "nombre": "Derecho comercial",
+      "url": "/areas/derecho-comercial"
+    },
+    {
+      "id": "derecho-laboral",
+      "nombre": "Derecho laboral",
+      "url": "/areas/derecho-laboral"
+    },
+    {
+      "id": "factoring",
+      "nombre": "Factoring",
+      "url": "/areas/factoring"
+    }
+  ],
+  "corresponsalia": "[PENDIENTE: confirmar] si se presenta como área propia o solo como vía de contacto",
+  "equipo": [
+    {
+      "nombre": "Octavio Graciosi",
+      "cargo": "Titular",
+      "formacion": "[PENDIENTE: confirmar]",
+      "foto": "[PENDIENTE: foto]"
+    }
+  ],
+  "avisoPublicidadProfesional": "[PENDIENTE: confirmar texto]"
+}

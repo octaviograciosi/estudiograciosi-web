@@ -1,0 +1,8 @@
+# Versión 1: solo existen Inicio y Contacto. Las páginas de Wix que no se conservan redirigen a Inicio (301).
+/acerca-de                      /           301
+/derecho-social                 /           301
+/derecho-laboral                /           301
+/custodia-policial              /           301
+/derecho-penal                  /           301
+/blog                           /           301
+/pol%C3%ADtica-de-privacidad    /           301

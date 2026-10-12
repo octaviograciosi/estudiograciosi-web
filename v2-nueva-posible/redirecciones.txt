@@ -1,0 +1,9 @@
+# Redirecciones 301 desde las direcciones del sitio en Wix (tabla aprobada por Octavio el 2026-10-07).
+# Formato _redirects (Netlify / Cloudflare Pages). Si el alojamiento es otro, se traduce a su formato.
+/acerca-de                      /el-estudio/                        301
+/derecho-social                 /areas/ejecuciones-judiciales/      301
+/derecho-laboral                /areas/                             301
+/custodia-policial              /areas/factoring/                   301
+/derecho-penal                  /areas/                             301
+/blog                           /publicaciones/                     301
+/pol%C3%ADtica-de-privacidad    /                                   301
