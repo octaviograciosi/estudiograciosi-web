@@ -162,6 +162,7 @@ def documento(ruta, titulo, descripcion, cuerpo):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(descripcion)}">
+<meta name="author" content="{esc(NOMBRE)}">
 <link rel="canonical" href="{canonica}">
 <link rel="icon" href="{asset('favicon.svg')}" type="image/svg+xml">
 <meta property="og:type" content="website">
