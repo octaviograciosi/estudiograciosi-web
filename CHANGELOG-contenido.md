@@ -89,3 +89,7 @@
   - Vista previa al compartir el enlace (Open Graph), con la foto de la recepción.
   - `robots.txt`.
 - **Repositorio:** el proyecto pasa a GitHub (`octaviograciosi/estudiograciosi-web`), conectado a Netlify; cada push a `main` publica solo. El formulario queda activado en Netlify (Octavio confirmó que llegó la consulta de prueba). Se suma `CLAUDE.md`, con el instructivo original de Octavio y, arriba, el estado actual del proyecto.
+
+## 2026-10-25
+
+- Dominio: se decide dejar estudiograciosi.com registrado en Wix (la diferencia de costo con otro registrador es de unos US$ 10 por año). Los registros DNS todavía apuntan a Wix; falta que Octavio los cambie a Netlify. Detalle en `CLAUDE.md`.

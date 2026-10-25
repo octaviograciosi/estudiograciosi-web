@@ -1,6 +1,6 @@
 # Sitio web del Estudio Graciosi: instrucciones para Claude
 
-## Estado del proyecto (actualizado el 12/10/2026)
+## Estado del proyecto (actualizado el 25/10/2026)
 
 Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando contradice al instructivo original (más abajo), **manda esta sección**.
 
@@ -21,7 +21,18 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
   2. Revisar en computadora y en celular.
   3. Anotar el cambio en `CHANGELOG-contenido.md`.
   4. Hacer commit y push a `main`.
-- **Pendiente:** mudar el dominio estudiograciosi.com de Wix a Cloudflare (registrador) y apuntarlo al sitio de Netlify. Recién después se da de baja el plan de Wix.
+- **Dominio (pendiente, en curso al 25/10/2026):**
+  - Decisión de Octavio: el dominio **se queda registrado en Wix** (cuesta unos US$ 20 por año, no justifica transferirlo; vence el 14/05/2027). Cloudflare quedó descartado: Wix no permite transferir directo y obliga a esperar 60 días.
+  - Netlify ya reconoció estudiograciosi.com como dominio del sitio `unrivaled-sorbet-f4d667`.
+  - **Falta que Octavio cambie los registros DNS en Wix** (Dominios, estudiograciosi.com, Administrar registros DNS):
+    1. Borrar los tres registros A `185.230.63.171`, `185.230.63.186` y `185.230.63.107`.
+    2. Agregar un registro A: host `estudiograciosi.com`, valor `75.2.60.5`.
+    3. Cambiar el CNAME de `www` de `cdn3.wixdns.net` a `unrivaled-sorbet-f4d667.netlify.app`.
+    4. No tocar el TXT de Facebook ni los nameservers `ns2/ns3.wixdns.net`.
+  - Al 25/10/2026 esos registros todavía apuntaban a Wix. Cómo verificar: `curl "https://dns.google/resolve?name=estudiograciosi.com&type=A"` debe devolver `75.2.60.5`. Después confirmar que https://estudiograciosi.com muestre el sitio nuevo y que el candado (https) esté activo.
+  - Recién con la web nueva funcionando en el dominio, Octavio da de baja el **plan del sitio** de Wix (no el dominio).
+- **Formulario:** activado en Netlify (Forms). La consulta de prueba llegó. Falta confirmar con Octavio que cargó el aviso por correo a `estudiograciosi@gmail.com`.
+- **Pendientes menores:** confirmar el derecho de uso de las fotos antes de usarlas, decidir si va aviso de privacidad bajo el formulario, y definir si se agregan "Cómo trabajamos" y la cobertura por provincias (ver `REFERENCIAS-CONTENIDO.md`).
 
 ---
 
