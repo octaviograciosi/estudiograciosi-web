@@ -97,3 +97,15 @@
 ## 2026-10-26
 
 - Se instalan en el proyecto (`.claude/skills/`) 12 skills de diseño y animación de Emil Kowalski (https://github.com/emilkowalski/skills, licencia MIT). No cambian el contenido del sitio.
+
+## 2026-10-26
+
+- **Estilo visual nuevo de la versión 1** (solo diseño; vista previa pendiente de aprobación, no publicado en Netlify):
+  - Encabezado con logo EG, línea vertical y "ESTUDIO GRACIOSI ABOGADOS". Menú: El Estudio, Áreas de práctica, Cobertura y Contacto. Octavio pide no mencionar Equipo. Publicaciones no se incluye porque no hay artículos.
+  - Tres banners con cambio manual: derecho comercial y recupero crediticio (texto del banner indicado por Octavio), cobertura (texto exacto de la referencia, sin corregir) y consultas ("Las consultas se reciben por formulario, por teléfono y por WhatsApp.").
+  - Bloque central con los textos ya aprobados (presentación y frase de visión). Las áreas de práctica conservan los textos de Octavio y suman foto.
+  - Cobertura: las seis provincias de `estudio.json` en grilla de dos columnas. El banner menciona cuatro, como pidió Octavio.
+  - Pie gris oscuro, en español, con enlaces centrados en dos columnas. El CUIT y el domicilio se mantienen; sobre el © no va nada más.
+  - Tipografía Plus Jakarta Sans en todo el sitio. Sin color de acento.
+  - Fotos aportadas por Octavio (carpeta de Drive), optimizadas en WebP. La foto de la estela de piedra no se usa por ahora. Para Factoring se usa la foto propia del área de trabajo.
+  - Sin cambios en `estudio.json`, redirecciones, formulario ni Netlify.

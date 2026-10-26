@@ -12,10 +12,15 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
 - **Rediseño alternativo: `v2-nueva-posible/`.** Inspirado en Clifford Chance. Está guardado y no se trabaja en él salvo pedido expreso.
 - **Áreas de práctica:** Recupero crediticio, Derecho comercial, Derecho laboral y Factoring. Los textos de cada área los fijó Octavio.
 - **Trato en los textos:** impersonal (sin tuteo, voseo ni usted).
-- **Menú:** El Estudio, Servicios y Contacto, siempre visible, al estilo Clifford Chance pero mínimo (PMV). Sin "Log in" ni buscador.
+- **Estilo nuevo (26/10/2026, en vista previa, falta aprobación de Octavio antes de publicar):** solo cambia el diseño de `v1-retoque/`. Mismo contenido, `estudio.json`, redirecciones, formulario y despliegue.
+  - Encabezado con logo EG, línea vertical y "ESTUDIO GRACIOSI ABOGADOS". Menú a la derecha en texto simple: El Estudio, Áreas de práctica, Cobertura y Contacto. **No se menciona Equipo** (decisión de Octavio). Publicaciones queda fuera hasta que haya artículos reales. En el celular el menú es desplegable.
+  - Portada: tres banners (texto a la izquierda, imagen a la derecha) con cambio manual por flechas, sin cambio automático. Después, bloque central, carrusel de Áreas de práctica con fotos, Cobertura en grilla de dos columnas con filete vertical y pie gris oscuro en español.
+  - El texto del banner de cobertura queda exactamente: "Brindamos cobertura en toda la zona NEA: Chaco, Corrientes, Formosa y Misiones." Octavio pidió no corregirlo (los datos tienen seis provincias).
+  - Tipografía: Plus Jakarta Sans en todo el sitio. Color: azul marino #10284D para títulos y detalles. **Para cualquier color de acento hay que preguntarle a Octavio antes.**
+  - Las fotos de `src/img/` (carpeta de Drive de Octavio) son definitivas y reemplazan la regla anterior de "solo fotos de la oficina". Se usan optimizadas (WebP, con texto alternativo).
 - **No se publican:** política de privacidad, horarios ni aviso de publicidad profesional (decisión de Octavio, por ahora).
 - **Se publican:** CUIT 20371576380, código postal H3500AHB y los dos teléfonos con WhatsApp.
-- **Fotos:** solo se usan fotos propias del estudio (oficina). Las fotos de Resistencia tomadas de internet requieren confirmar el derecho de uso antes de publicarlas.
+- **Fotos:** ver "Estilo nuevo". Antes del estilo nuevo solo se usaban fotos de la oficina; Octavio decidió que las nuevas fotos son definitivas. Queda anotado confirmar el derecho de uso.
 - **Skills de diseño (Emil Kowalski, licencia MIT):** instalados en `.claude/skills/`. Se usan para decisiones de diseño y animación del sitio (por ejemplo `emil-design-eng`, `animate`, `mobile-native`, `break-ui`). Se omitieron `animate-expo`, `write-swift` y `ask-sonner`, que no aplican a un sitio estático. Cuando un criterio de esos skills choque con lo que Octavio decidió o con el instructivo, manda Octavio.
 - **Después de cada cambio:**
   1. Regenerar `dist/`.

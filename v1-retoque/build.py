@@ -66,10 +66,11 @@ def json_ld():
 
 
 MENU = [
-    # (ruta, texto, [(destino, texto) del submenú])
-    ("/#estudio", "El Estudio", [("/#estudio", "Presentación"), ("/#vision", "Nuestra visión"), ("/#oficina", "La oficina")]),
-    ("/#servicios", "Servicios", [("/#" + a["id"], a["nombre"]) for a in DATOS["areasDePractica"]]),
-    ("/contacto", "Contacto", [("/contacto#formulario", "Formulario de consulta"), ("/contacto#datos", "Teléfonos y correo"), ("/contacto#ubicacion", "Ubicación")]),
+    # (destino, texto)
+    ("/#estudio", "El Estudio"),
+    ("/#areas", "Áreas de práctica"),
+    ("/#cobertura", "Cobertura"),
+    ("/contacto", "Contacto"),
 ]
 
 
@@ -79,27 +80,17 @@ def href(destino):
 
 
 def encabezado(actual):
-    items = []
-    for n, (ruta, texto, sub) in enumerate(MENU):
-        marca = ' aria-current="page"' if ruta == actual else ""
-        if not sub:
-            items.append(f'<li><a href="{href(ruta)}"{marca}>{esc(texto)}</a></li>')
-            continue
-        enlaces = "".join(f'<li><a href="{href(d)}">{esc(t)}</a></li>' for d, t in sub)
-        items.append(f"""<li class="con-submenu">
-      <a href="{href(ruta)}"{marca}>{esc(texto)}</a><button type="button" class="abrir-submenu" aria-expanded="false" aria-controls="sub-{n}" aria-label="Ver opciones de {esc(texto)}"><svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
-      <ul class="submenu" id="sub-{n}">{enlaces}</ul>
-    </li>""")
-    wa = next((t for t in DATOS["telefonos"] if t["whatsapp"] is True), None)
-    atajo = (f'<a class="atajo" href="https://wa.me/{telefono_href(wa["numero"]).lstrip("+")}">Consultas por WhatsApp</a>' if wa else "")
+    items = "".join(
+        f'<li><a href="{href(d)}"' + (' aria-current="page"' if d == actual else "") + f">{esc(t)}</a></li>"
+        for d, t in MENU
+    )
     return f"""<header class="encabezado"><div class="contenedor">
-  <div class="fila-marca">
-    <a class="marca" href="{enlace('/')}">{esc(NOMBRE)}</a><span class="bajada">Abogados</span>
-  </div>
-  <div class="fila-menu" id="navegacion">
-    <nav aria-label="Menú principal"><ul class="menu" id="menu">{"".join(items)}</ul></nav>
-    {atajo}
-  </div>
+  <a class="marca" href="{enlace('/')}" aria-label="{esc(NOMBRE)} Abogados, inicio">
+    <span class="eg" aria-hidden="true">EG</span><span class="linea-v" aria-hidden="true"></span>
+    <span class="nombre" aria-hidden="true"><span>Estudio</span><span>Graciosi</span><span>Abogados</span></span>
+  </a>
+  <button type="button" class="abrir-menu" aria-expanded="false" aria-controls="navegacion">Menú</button>
+  <nav id="navegacion" aria-label="Menú principal"><ul class="menu">{items}</ul></nav>
 </div></header>"""
 
 
@@ -120,40 +111,50 @@ def lineas_contacto():
 
 def pie():
     cuit = DATOS["cuit"]
-    titular = f"{esc(DATOS['titular'])}" + (f" · CUIT {dato(cuit)}" if cuit else "")
-    filas = "".join(f"<span>{l}</span>" for l in [titular] + lineas_contacto())
+    nav = "".join(f'<li><a href="{href(d)}">{esc(t)}</a></li>' for d, t in MENU)
+    contacto = "".join(
+        f'<li><a href="https://wa.me/{telefono_href(t["numero"]).lstrip("+")}">WhatsApp {esc(t["numero"])}</a></li>'
+        if t["whatsapp"] is True else f'<li><a href="tel:{telefono_href(t["numero"])}">{esc(t["numero"])}</a></li>'
+        for t in DATOS["telefonos"]
+    ) + "".join(f'<li><a href="mailto:{esc(c)}">{esc(c)}</a></li>' for c in DATOS["correos"])
+    dom = DATOS["domicilio"]
+    legal = f"{esc(dom['calle'])}, {dato(dom['codigoPostal'])} {esc(dom['ciudad'])}, {esc(dom['provincia'])}."
+    if cuit:
+        legal += f"<br>CUIT {dato(cuit)}"
     return f"""<footer class="pie"><div class="contenedor">
-  <div>
-    <a class="marca" href="{enlace('/')}">{esc(NOMBRE)}</a><span class="bajada">Abogados</span>
-    <p class="derechos">© <span id="anio">2026</span> {esc(NOMBRE)}</p>
+  <div class="pie-columnas">
+    <nav aria-label="Enlaces del sitio"><ul>{nav}</ul></nav>
+    <ul>{contacto}</ul>
   </div>
-  <address>{filas}</address>
+  <div class="legal"><span>{legal}</span><span>© <span id="anio">2026</span> {esc(NOMBRE)}</span></div>
 </div></footer>"""
 
 
 SCRIPT = """<script>
 (function () {
   document.getElementById('anio').textContent = new Date().getFullYear();
-  var conmutar = function (boton, panel) {
-    boton.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var abierto = boton.getAttribute('aria-expanded') === 'true';
-      document.querySelectorAll('.abrir-submenu[aria-expanded="true"]').forEach(function (b) { if (b !== boton && panel.classList.contains('submenu')) { b.setAttribute('aria-expanded', 'false'); document.getElementById(b.getAttribute('aria-controls')).classList.remove('abierto'); } });
-      boton.setAttribute('aria-expanded', String(!abierto));
-      panel.classList.toggle('abierto', !abierto);
-    });
-  };
-  document.querySelectorAll('.abrir-submenu').forEach(function (b) { conmutar(b, document.getElementById(b.getAttribute('aria-controls'))); });
-  document.addEventListener('click', function () {
-    document.querySelectorAll('.abrir-submenu[aria-expanded="true"]').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); document.getElementById(b.getAttribute('aria-controls')).classList.remove('abierto'); });
+  var boton = document.querySelector('.abrir-menu'), nav = document.getElementById('navegacion');
+  boton.addEventListener('click', function () {
+    var abierto = boton.getAttribute('aria-expanded') === 'true';
+    boton.setAttribute('aria-expanded', String(!abierto));
+    nav.classList.toggle('abierto', !abierto);
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') document.body.click(); });
+  nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') { nav.classList.remove('abierto'); boton.setAttribute('aria-expanded', 'false'); } });
+  document.querySelectorAll('[data-pista]').forEach(function (cont) {
+    var pista = cont.querySelector('[data-desliza]'), prev = cont.querySelector('[data-prev]'), sig = cont.querySelector('[data-sig]');
+    var paso = function () { var h = pista.firstElementChild; return h.getBoundingClientRect().width + (parseFloat(getComputedStyle(pista).columnGap) || 0); };
+    var actualizar = function () { prev.disabled = pista.scrollLeft < 4; sig.disabled = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4; };
+    prev.addEventListener('click', function () { pista.scrollBy({ left: -paso(), behavior: 'smooth' }); });
+    sig.addEventListener('click', function () { pista.scrollBy({ left: paso(), behavior: 'smooth' }); });
+    pista.addEventListener('scroll', actualizar, { passive: true });
+    window.addEventListener('resize', actualizar); actualizar();
+  });
 })();
 </script>"""
 
 
 def documento(ruta, titulo, descripcion, cuerpo):
-    revision = "" if FINAL else '<div class="revision"><div class="contenedor">Versión 1 · Vista previa del sitio actual retocado. Borrador, no publicado.</div></div>\n'
+    revision = "" if FINAL else '<div class="revision"><div class="contenedor">Versión 1 · Vista previa del estilo nuevo. Borrador, no publicado.</div></div>\n'
     canonica = DOMINIO + ("/" if ruta == "/" else ruta + "/")
     return f"""<!doctype html>
 <html lang="es-AR">
@@ -175,7 +176,7 @@ def documento(ruta, titulo, descripcion, cuerpo):
 {'' if FINAL else '<meta name="robots" content="noindex">'}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400&family=Figtree:wght@400&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{asset('estilos.css')}">
 <script type="application/ld+json">{json_ld()}</script>
 </head>
@@ -222,32 +223,67 @@ SERVICIOS = {
 }
 
 
+FOTOS_AREA = {
+    "recupero-crediticio": ("area-geometrica.webp", "Líneas y volúmenes geométricos en tonos claros"),
+    "derecho-comercial": ("area-biblioteca.webp", "Estantería con tomos de legislación y jurisprudencia"),
+    "derecho-laboral": ("area-relieve.webp", "Relieve en madera con una balanza"),
+    "factoring": ("area-oficina.webp", "Área de trabajo de la oficina del Estudio"),
+}
+
+BANNERS = [
+    # (imagen, alt, título, texto, enlace, destino)
+    ("banner-columnas", "Estatua sentada frente a las columnas de un edificio de justicia",
+     "Derecho comercial y recupero crediticio",
+     "Somos un estudio especializado en derecho comercial, laboral y gestión de carteras de cobranzas.",
+     "Áreas de práctica", "/#areas"),
+    ("banner-mapa-nea", "Mapa de papel con la región del NEA en azul",
+     "Cobertura en la región",
+     "Brindamos cobertura en toda la zona NEA: Chaco, Corrientes, Formosa y Misiones.",
+     "Cobertura", "/#cobertura"),
+    ("banner-justicia", "Figura de la Justicia con balanza y espada",
+     "Consultas",
+     "Las consultas se reciben por formulario, por teléfono y por WhatsApp.",
+     "Contacto", "/contacto"),
+]
+
+FLECHAS = """<div class="flechas"><button type="button" data-prev aria-label="Anterior"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M8 1L2 7l6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><button type="button" data-sig aria-label="Siguiente"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>"""
+
+
 def cuerpo_inicio():
-    tarjetas = "".join(
-        f'<article class="tarjeta" id="{a["id"]}"><span class="numero" aria-hidden="true">{i:02d}.</span><h3>{esc(a["nombre"])}</h3><p>{esc(SERVICIOS[a["id"]])}</p></article>'
-        for i, a in enumerate(DATOS["areasDePractica"], 1)
+    banners = ""
+    for n, (img, alt, titulo, texto, enl, dest) in enumerate(BANNERS):
+        h = "h1" if n == 0 else "h2"
+        carga = "" if n == 0 else ' loading="lazy"'
+        banners += f"""<section class="banner" aria-roledescription="diapositiva" aria-label="{n + 1} de {len(BANNERS)}">
+  <picture><img src="{asset('img/' + img + '-1600.webp')}" srcset="{asset('img/' + img + '-800.webp')} 800w, {asset('img/' + img + '-1600.webp')} 1600w" sizes="100vw" width="1600" height="900" alt="{esc(alt)}"{carga}></picture>
+  <div class="texto"><div><{h}>{esc(titulo)}</{h}><p>{esc(texto)}</p><a class="mas" href="{href(dest)}">{esc(enl)}</a></div></div>
+</section>"""
+    tarjetas = ""
+    for a in DATOS["areasDePractica"]:
+        foto, alt = FOTOS_AREA[a["id"]]
+        tarjetas += f"""<article class="tarjeta" id="{a["id"]}"><img src="{asset('img/' + foto)}" width="900" height="600" loading="lazy" alt="{esc(alt)}"><h3>{esc(a["nombre"])}</h3><p>{esc(SERVICIOS[a["id"]])}</p><a class="mas" href="{enlace('/contacto')}">Más info<span class="sr-only"> sobre {esc(a["nombre"])}</span></a></article>"""
+    provincias = "".join(
+        f'<li><h3>{esc(p["nombre"])}</h3></li>' for p in DATOS["provincias"]
     )
-    return f"""<section class="portada">
-  <div class="foto"><img src="{asset('img/oficina-recepcion.jpg')}" alt="Recepción y sala de reuniones de la oficina del Estudio en Resistencia"></div>
-  <div class="recuadro recuadro-lema"><h1>Somos un estudio especializado en derecho comercial, laboral y gestión de carteras de cobranzas.</h1></div>
-  <div class="recuadro recuadro-presentacion" id="estudio">
-    <h2>{esc(NOMBRE)}</h2>
-    <p>Titular: {esc(DATOS['titular'])}. Nuestro equipo se destaca por su capacidad de gestión y respuesta frente a la asignación de grandes carteras, abordando tres etapas en el proceso de recuperación de deudas: a) mora temprana; b) mora tardía; y c) ejecución judicial.</p>
-    <a class="boton" href="{enlace('/contacto')}">Contacto</a>
-  </div>
-</section>
-<section class="servicios" id="servicios" aria-labelledby="t-servicios"><div class="contenedor">
-  <h2 id="t-servicios">Nuestros servicios</h2>
-  <div class="tarjetas">{tarjetas}</div>
+    return f"""<div class="banners" data-pista aria-roledescription="carrusel" aria-label="Mensajes principales">
+  <div class="banners-pista" data-desliza>{banners}</div>
+  {FLECHAS}
+</div>
+<section class="central" id="estudio" aria-labelledby="t-estudio"><div class="contenedor"><div class="interior">
+  <h2 id="t-estudio">{esc(NOMBRE)}</h2>
+  <p>Titular: {esc(DATOS['titular'])}. Nuestro equipo se destaca por su capacidad de gestión y respuesta frente a la asignación de grandes carteras, abordando tres etapas en el proceso de recuperación de deudas: a) mora temprana; b) mora tardía; y c) ejecución judicial.</p>
+  <p class="vision">Combinamos una frondosa experiencia técnica con integridad de valores que nos caracterizan, a fin de ofrecer una prestación de excelencia que sea un valor agregado para nuestros clientes.</p>
+  <a class="mas" href="{enlace('/contacto')}">Más info</a>
+</div></div></section>
+<section class="areas" id="areas" aria-labelledby="t-areas"><div class="contenedor" data-pista>
+  <div class="sec-cabecera"><h2 id="t-areas">Áreas de práctica</h2>{FLECHAS}</div>
+  <div class="carrusel" data-desliza>{tarjetas}</div>
 </div></section>
-<section class="vision" id="vision" aria-label="Nuestra visión"><div class="contenedor">
-  <span class="comillas" aria-hidden="true">“</span>
-  <blockquote>Combinamos una frondosa experiencia técnica con integridad de valores que nos caracterizan, a fin de ofrecer una prestación de excelencia que sea un valor agregado para nuestros clientes.</blockquote>
-  <span class="etiqueta">Nuestra visión</span>
-</div></section>
-<section class="galeria" id="oficina" aria-label="La oficina"><div class="contenedor"><div>
-  <img src="{asset('img/oficina-trabajo.jpg')}" alt="Área de trabajo de la oficina del Estudio">
-</div></div></section>"""
+<section class="cobertura" id="cobertura" aria-labelledby="t-cobertura"><div class="contenedor">
+  <h2 id="t-cobertura">Cobertura</h2>
+  <p class="bajada">Provincias en las que actúa el Estudio.</p>
+  <ul class="notas">{provincias}</ul>
+</div></section>"""
 
 
 def cuerpo_contacto():
@@ -281,10 +317,10 @@ def cuerpo_contacto():
 
 
 def cuerpo_simple(titulo, texto):
-    return f"""<section class="contacto"><div class="contenedor">
+    return f"""<section class="contacto simple"><div class="contenedor">
   <h1>{esc(titulo)}</h1>
   <p class="intro">{esc(texto)}</p>
-  <p style="text-align:center"><a class="boton" href="{enlace('/')}">Volver al inicio</a></p>
+  <p><a class="boton" href="{enlace('/')}">Volver al inicio</a></p>
 </div></section>"""
 
 
