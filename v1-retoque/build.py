@@ -142,10 +142,11 @@ SCRIPT = """<script>
   nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') { nav.classList.remove('abierto'); boton.setAttribute('aria-expanded', 'false'); } });
   document.querySelectorAll('[data-pista]').forEach(function (cont) {
     var pista = cont.querySelector('[data-desliza]'), prev = cont.querySelector('[data-prev]'), sig = cont.querySelector('[data-sig]');
+    var suave = function () { return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; };
     var paso = function () { var h = pista.firstElementChild; return h.getBoundingClientRect().width + (parseFloat(getComputedStyle(pista).columnGap) || 0); };
     var actualizar = function () { prev.disabled = pista.scrollLeft < 4; sig.disabled = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4; };
-    prev.addEventListener('click', function () { pista.scrollBy({ left: -paso(), behavior: 'smooth' }); });
-    sig.addEventListener('click', function () { pista.scrollBy({ left: paso(), behavior: 'smooth' }); });
+    prev.addEventListener('click', function () { pista.scrollBy({ left: -paso(), behavior: suave() }); });
+    sig.addEventListener('click', function () { pista.scrollBy({ left: paso(), behavior: suave() }); });
     pista.addEventListener('scroll', actualizar, { passive: true });
     window.addEventListener('resize', actualizar); actualizar();
   });
