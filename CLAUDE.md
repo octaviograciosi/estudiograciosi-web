@@ -16,6 +16,7 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
 - **No se publican:** política de privacidad, horarios ni aviso de publicidad profesional (decisión de Octavio, por ahora).
 - **Se publican:** CUIT 20371576380, código postal H3500AHB y los dos teléfonos con WhatsApp.
 - **Fotos:** solo se usan fotos propias del estudio (oficina). Las fotos de Resistencia tomadas de internet requieren confirmar el derecho de uso antes de publicarlas.
+- **Skills de diseño (Emil Kowalski, licencia MIT):** instalados en `.claude/skills/`. Se usan para decisiones de diseño y animación del sitio (por ejemplo `emil-design-eng`, `animate`, `mobile-native`, `break-ui`). Se omitieron `animate-expo`, `write-swift` y `ask-sonner`, que no aplican a un sitio estático. Cuando un criterio de esos skills choque con lo que Octavio decidió o con el instructivo, manda Octavio.
 - **Después de cada cambio:**
   1. Regenerar `dist/`.
   2. Revisar en computadora y en celular.

@@ -93,3 +93,7 @@
 ## 2026-10-25
 
 - Dominio: se decide dejar estudiograciosi.com registrado en Wix (la diferencia de costo con otro registrador es de unos US$ 10 por año). Los registros DNS todavía apuntan a Wix; falta que Octavio los cambie a Netlify. Detalle en `CLAUDE.md`.
+
+## 2026-10-26
+
+- Se instalan en el proyecto (`.claude/skills/`) 12 skills de diseño y animación de Emil Kowalski (https://github.com/emilkowalski/skills, licencia MIT). No cambian el contenido del sitio.
