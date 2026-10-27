@@ -38,7 +38,7 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
     4. No tocar el TXT de Facebook ni los nameservers `ns2/ns3.wixdns.net`.
   - Al 25/10/2026 esos registros todavía apuntaban a Wix. Cómo verificar: `curl "https://dns.google/resolve?name=estudiograciosi.com&type=A"` debe devolver `75.2.60.5`. Después confirmar que https://estudiograciosi.com muestre el sitio nuevo y que el candado (https) esté activo.
   - Recién con la web nueva funcionando en el dominio, Octavio da de baja el **plan del sitio** de Wix (no el dominio).
-- **Formulario:** activado en Netlify (Forms). La consulta de prueba llegó. Falta confirmar con Octavio que cargó el aviso por correo a `estudiograciosi@gmail.com`.
+- **Formulario:** activado en Netlify (Forms). La consulta de prueba llegó. Octavio pidió (27/10/2026) que todas las consultas del formulario lleguen a `octaviograciosi@gmail.com`. Esto se configura en el panel de Netlify (Forms, Form notifications, Add notification, Email notification), no en el código. Falta confirmar que lo cargó y que llegó una consulta de prueba.
 - **Pendientes menores:** confirmar el derecho de uso de las fotos antes de usarlas, decidir si va aviso de privacidad bajo el formulario, y definir si se agregan "Cómo trabajamos" y la cobertura por provincias (ver `REFERENCIAS-CONTENIDO.md`).
 
 ---

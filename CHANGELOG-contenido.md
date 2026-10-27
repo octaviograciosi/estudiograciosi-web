@@ -137,3 +137,4 @@
 - Octavio aprueba el estilo nuevo y confirma que las matrículas de las seis provincias están al día. `estudio.json` lo registra (los números de matrícula siguen pendientes y no se publican).
 - Logo: se usa el archivo oficial de Octavio (`logo.webp`) en el encabezado, en lugar del logo armado con texto.
 - Se genera `dist/` y se publica en Netlify.
+- Formulario: Octavio pide que todas las consultas lleguen a `octaviograciosi@gmail.com`. El aviso se configura en el panel de Netlify; no cambia el sitio publicado.
