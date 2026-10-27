@@ -227,25 +227,51 @@ SERVICIOS = {
 FOTOS_AREA = {
     "recupero-crediticio": ("area-geometrica.webp", "Líneas y volúmenes geométricos en tonos claros"),
     "derecho-comercial": ("area-biblioteca.webp", "Estantería con tomos de legislación y jurisprudencia"),
-    "derecho-laboral": ("area-relieve.webp", "Relieve en madera con una balanza"),
-    "factoring": ("area-oficina.webp", "Área de trabajo de la oficina del Estudio"),
+    "derecho-laboral": ("area-laboral.webp", "Grabado de una audiencia en una sala de tribunal"),
+    "factoring": ("area-factoring.webp", "Pluma estilográfica sobre documentos en un escritorio"),
 }
 
 BANNERS = [
     # (imagen, alt, título, texto, enlace, destino)
-    ("banner-columnas", "Estatua sentada frente a las columnas de un edificio de justicia",
-     "Derecho comercial y recupero crediticio",
+    ("banner-estela", "Estela de piedra con una figura sentada y otra de pie, en relieve",
+     "Estudio Graciosi",
      "Somos un estudio especializado en derecho comercial, laboral y gestión de carteras de cobranzas.",
-     "Áreas de práctica", "/#areas"),
+     "Quiénes somos", "/#estudio"),
     ("banner-mapa-nea", "Mapa de papel con la región del NEA en azul",
      "Cobertura en la región",
      "Brindamos cobertura en toda la zona NEA: Chaco, Corrientes, Formosa y Misiones.",
      "Cobertura", "/#cobertura"),
+    ("banner-columnas", "Estatua sentada frente a las columnas de un edificio de justicia",
+     "Derecho comercial y recupero crediticio",
+     "Nos especializamos en gestión de carteras de cobranzas y recupero de activos.",
+     "Áreas de práctica", "/#areas"),
     ("banner-justicia", "Figura de la Justicia con balanza y espada",
      "Consultas",
      "Las consultas se reciben por formulario, por teléfono y por WhatsApp.",
      "Contacto", "/contacto"),
 ]
+
+def mapa_provincias():
+    """Mapa de Argentina con las provincias de estudio.json resaltadas (contornos de Natural Earth, dominio público)."""
+    mapa = json.loads((RAIZ / "src" / "mapa-provincias.json").read_text(encoding="utf-8"))
+    nombres = [p["nombre"] for p in DATOS["provincias"]]
+    ancho, alto = mapa["caja"][2], mapa["caja"][3]
+    capas = "".join(
+        f'<path class="{"prov activa" if n in nombres else "prov"}" d="{g["d"]}"/>' for n, g in mapa["provincias"].items()
+    )
+    # rótulos en una columna a la derecha, unidos al centro de cada provincia por una línea fina
+    activas = sorted(((mapa["provincias"][n]["centro"], n) for n in nombres if n in mapa["provincias"]), key=lambda t: t[0][1])
+    ys, rotulos = [], ""
+    for (cx, cy), nombre in activas:
+        y = max(cy, ys[-1] + 80) if ys else cy
+        ys.append(y)
+        rotulos += (f'<line class="guia" x1="{cx:.0f}" y1="{cy:.0f}" x2="{ancho + 40:.0f}" y2="{y:.0f}"/>'
+                    f'<circle class="punto" cx="{cx:.0f}" cy="{cy:.0f}" r="9"/>'
+                    f'<text class="rotulo" x="{ancho + 56:.0f}" y="{y + 15:.0f}">{esc(nombre)}</text>')
+    lista = ", ".join(nombres)
+    return (f'<figure class="mapa-prov"><svg viewBox="0 0 {ancho + 380:.0f} {alto:.0f}" role="img" aria-label="Mapa de Argentina con las provincias de actuación resaltadas: {esc(lista)}">'
+            f'{capas}{rotulos}</svg></figure>')
+
 
 FLECHAS = """<div class="flechas"><button type="button" data-prev aria-label="Anterior"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M8 1L2 7l6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button><button type="button" data-sig aria-label="Siguiente"><svg width="9" height="14" viewBox="0 0 9 14" aria-hidden="true"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>"""
 
@@ -263,16 +289,12 @@ def cuerpo_inicio():
     for a in DATOS["areasDePractica"]:
         foto, alt = FOTOS_AREA[a["id"]]
         tarjetas += f"""<article class="tarjeta" id="{a["id"]}"><img src="{asset('img/' + foto)}" width="900" height="600" loading="lazy" alt="{esc(alt)}"><h3>{esc(a["nombre"])}</h3><p>{esc(SERVICIOS[a["id"]])}</p><a class="mas" href="{enlace('/contacto')}">Más info<span class="sr-only"> sobre {esc(a["nombre"])}</span></a></article>"""
-    provincias = "".join(
-        f'<li><h3>{esc(p["nombre"])}</h3></li>' for p in DATOS["provincias"]
-    )
     return f"""<div class="banners" data-pista aria-roledescription="carrusel" aria-label="Mensajes principales">
   <div class="banners-pista" data-desliza>{banners}</div>
   {FLECHAS}
 </div>
 <section class="central" id="estudio" aria-labelledby="t-estudio"><div class="contenedor"><div class="interior">
   <h2 id="t-estudio">{esc(NOMBRE)}</h2>
-  <p>Titular: {esc(DATOS['titular'])}. Nuestro equipo se destaca por su capacidad de gestión y respuesta frente a la asignación de grandes carteras, abordando tres etapas en el proceso de recuperación de deudas: a) mora temprana; b) mora tardía; y c) ejecución judicial.</p>
   <p class="vision">Combinamos una frondosa experiencia técnica con integridad de valores que nos caracterizan, a fin de ofrecer una prestación de excelencia que sea un valor agregado para nuestros clientes.</p>
   <a class="mas" href="{enlace('/contacto')}">Más info</a>
 </div></div></section>
@@ -280,10 +302,9 @@ def cuerpo_inicio():
   <div class="sec-cabecera"><h2 id="t-areas">Áreas de práctica</h2>{FLECHAS}</div>
   <div class="carrusel" data-desliza>{tarjetas}</div>
 </div></section>
-<section class="cobertura" id="cobertura" aria-labelledby="t-cobertura"><div class="contenedor">
-  <h2 id="t-cobertura">Cobertura</h2>
-  <p class="bajada">Provincias en las que actúa el Estudio.</p>
-  <ul class="notas">{provincias}</ul>
+<section class="cobertura" id="cobertura" aria-labelledby="t-cobertura"><div class="contenedor cobertura-grilla">
+  <div><h2 id="t-cobertura">Cobertura</h2><p class="bajada">Provincias en las que actúa el Estudio, resaltadas en el mapa.</p></div>
+  {mapa_provincias()}
 </div></section>"""
 
 

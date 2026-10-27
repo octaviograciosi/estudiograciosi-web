@@ -109,3 +109,12 @@
   - Tipografía Plus Jakarta Sans en todo el sitio. Sin color de acento.
   - Fotos aportadas por Octavio (carpeta de Drive), optimizadas en WebP. La foto de la estela de piedra no se usa por ahora. Para Factoring se usa la foto propia del área de trabajo.
   - Sin cambios en `estudio.json`, redirecciones, formulario ni Netlify.
+
+## 2026-10-27
+
+- Estilo nuevo, ajustes pedidos por Octavio (vista previa, sin publicar):
+  - Cuatro banners con las fotos indicadas: 1 estela de piedra ("Estudio Graciosi" y la frase del banner de Octavio), 2 mapa del NEA (texto sin corregir), 3 estatua frente a las columnas (texto de la referencia de Octavio sobre carteras de cobranzas y recupero de activos) y 4 figura de la Justicia.
+  - Se elimina de la portada el párrafo "Titular: Octavio Graciosi. Nuestro equipo se destaca…". Queda la frase de visión.
+  - Cobertura: se quita el listado de provincias y se muestra un mapa de Argentina con las seis provincias de `estudio.json` resaltadas y rotuladas. Contornos de Natural Earth (dominio público), simplificados.
+  - Nuevas fotos para las tarjetas: Derecho laboral (grabado de una audiencia) y Factoring (pluma sobre documentos). Se recortó el borde inferior de la foto de Derecho laboral, que traía una leyenda de numeración de banco de imágenes.
+  - Pendiente: la foto de Derecho laboral parece una vista previa de Shutterstock (330 px, con leyenda). Hay que confirmar que Octavio tiene la licencia antes de publicar. La de Factoring viene de Unsplash.
