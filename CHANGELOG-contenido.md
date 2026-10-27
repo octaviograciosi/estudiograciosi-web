@@ -131,3 +131,9 @@
 - Recupero crediticio: texto nuevo de Octavio ("Nos mantenemos a la vanguardia de las tendencias…"). Se corrigieron "mantenernos", "menra", "basta" (vasta) y "certeza que" (certeza de que).
 - Contacto: el texto introductorio queda solo con "Para recibir asesoramiento o realizar una consulta, se encuentra a disposición el siguiente formulario, así como los datos de contacto del Estudio." Se elimina el desplegable "Tipo de consulta" del formulario. El logo de WhatsApp reemplaza a "Tel:" y a "WhatsApp" en cada línea de teléfono, en Contacto y en el pie.
 - Aviso: los textos con "líder", "excelencia", "más alto estándar", "éxito" son afirmaciones de publicidad profesional. Octavio decidió usarlos; conviene revisarlos con las normas de los colegios de abogados antes de publicar.
+
+## 2026-10-27 (publicación)
+
+- Octavio aprueba el estilo nuevo y confirma que las matrículas de las seis provincias están al día. `estudio.json` lo registra (los números de matrícula siguen pendientes y no se publican).
+- Logo: se usa el archivo oficial de Octavio (`logo.webp`) en el encabezado, en lugar del logo armado con texto.
+- Se genera `dist/` y se publica en Netlify.

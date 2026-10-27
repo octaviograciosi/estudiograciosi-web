@@ -5,17 +5,18 @@
 Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando contradice al instructivo original (más abajo), **manda esta sección**.
 
 - **Responder siempre en español de Argentina, con voseo.** Octavio es abogado, no programador: explicar sin jerga y pedir solo lo que tiene que hacer él.
-- **Sitio publicado: `v1-retoque/`.** Conserva la estética del sitio anterior en Wix, con dos páginas: Inicio y Contacto.
+- **Sitio publicado: `v1-retoque/`.** Dos páginas: Inicio y Contacto. Desde el 27/10/2026 usa el estilo nuevo (ver más abajo); antes conservaba la estética de Wix.
   - Datos: salen de `estudio.json`, la fuente única.
   - Generación: `python3 build.py --final` genera `v1-retoque/dist/`.
   - Publicación: cada `git push` a `main` publica solo en Netlify (sitio `unrivaled-sorbet-f4d667`). La carpeta publicada está definida en `netlify.toml`.
 - **Rediseño alternativo: `v2-nueva-posible/`.** Inspirado en Clifford Chance. Está guardado y no se trabaja en él salvo pedido expreso.
 - **Áreas de práctica:** Recupero crediticio, Derecho comercial, Derecho laboral y Factoring. Los textos de cada área los fijó Octavio.
 - **Trato en los textos:** impersonal (sin tuteo, voseo ni usted).
-- **Estilo nuevo (26/10/2026, en vista previa, falta aprobación de Octavio antes de publicar):** solo cambia el diseño de `v1-retoque/`. Mismo contenido, `estudio.json`, redirecciones, formulario y despliegue.
-  - Encabezado con logo EG, línea vertical y "ESTUDIO GRACIOSI ABOGADOS". Menú a la derecha en texto simple: El Estudio, Áreas de práctica, Cobertura y Contacto. **No se menciona Equipo** (decisión de Octavio). Publicaciones queda fuera hasta que haya artículos reales. En el celular el menú es desplegable.
+- **Estilo nuevo (26/10/2026, aprobado por Octavio y publicado el 27/10/2026):** solo cambia el diseño de `v1-retoque/`. Mismo contenido, `estudio.json`, redirecciones, formulario y despliegue.
+  - Encabezado con el logo oficial de Octavio (`src/img/logo.webp`, EG, línea vertical y "ESTUDIO GRACIOSI ABOGADOS"). Menú a la derecha en texto simple: El Estudio, Áreas de práctica, Cobertura y Contacto. **No se menciona Equipo** (decisión de Octavio). Publicaciones queda fuera hasta que haya artículos reales. En el celular el menú es desplegable.
   - Portada: cuatro banners, en este orden: estela, mapa NEA, columnas y figura de la Justicia (texto a la izquierda, imagen a la derecha), con cambio manual por flechas, sin cambio automático. Octavio eligió cuatro, aunque el instructivo original decía máximo tres. Después, bloque central (sin el párrafo de "Titular", que Octavio mandó eliminar), carrusel de Áreas de práctica con fotos, Cobertura con un mapa de Argentina que resalta las provincias de `estudio.json` (sin listado de provincias en texto) y pie gris oscuro en español. El mapa se dibuja desde `v1-retoque/src/mapa-provincias.json`, generado con `herramientas/generar_mapa.py` a partir de Natural Earth (dominio público).
   - El texto del banner de cobertura queda exactamente: "Brindamos cobertura en toda la zona NEA: Chaco, Corrientes, Formosa y Misiones." Octavio pidió no corregirlo (los datos tienen seis provincias).
+  - Matrículas: Octavio confirmó el 27/10/2026 que las de las seis provincias están al día (los números siguen pendientes y no se publican). El formulario ya no tiene el desplegable "tipo de consulta". Los teléfonos llevan el ícono de WhatsApp.
   - Tipografía: Plus Jakarta Sans en todo el sitio. Color: azul marino #10284D para títulos y detalles. **Para cualquier color de acento hay que preguntarle a Octavio antes.**
   - Las fotos de `src/img/` (carpeta de Drive de Octavio) son definitivas y reemplazan la regla anterior de "solo fotos de la oficina". Se usan optimizadas (WebP, con texto alternativo).
 - **No se publican:** política de privacidad, horarios ni aviso de publicidad profesional (decisión de Octavio, por ahora).

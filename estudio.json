@@ -1,5 +1,5 @@
 {
-  "_nota": "Fuente única de datos del estudio. Todo valor que empieza con [PENDIENTE] debe confirmarlo Octavio antes de publicar. Datos confirmados por Octavio el 2026-10-07: nombre, domicilio, teléfonos, correo y áreas de práctica. 2026-10-08: Octavio redefine las áreas: Recupero crediticio (agrupa gestión temprana, mora tardía y ejecuciones judiciales), Derecho comercial, Derecho laboral y Factoring. 2026-10-09: Octavio confirma el CUIT 20371576380 (se publica), el código postal H3500AHB y el número +54 9 3624 856500. Los horarios no se publican. 2026-10-12: Octavio confirma que +54 9 3624 856500 tiene WhatsApp.",
+  "_nota": "Fuente única de datos del estudio. Todo valor que empieza con [PENDIENTE] debe confirmarlo Octavio antes de publicar. Datos confirmados por Octavio el 2026-10-07: nombre, domicilio, teléfonos, correo y áreas de práctica. 2026-10-08: Octavio redefine las áreas: Recupero crediticio (agrupa gestión temprana, mora tardía y ejecuciones judiciales), Derecho comercial, Derecho laboral y Factoring. 2026-10-09: Octavio confirma el CUIT 20371576380 (se publica), el código postal H3500AHB y el número +54 9 3624 856500. Los horarios no se publican. 2026-10-12: Octavio confirma que +54 9 3624 856500 tiene WhatsApp. 2026-10-27: Octavio confirma que las matrículas de las seis provincias están al día. Los números de matrícula siguen sin cargar y no se publican.",
   "nombre": "Estudio Graciosi",
   "titular": "Octavio Graciosi",
   "cuit": "20371576380",
@@ -27,27 +27,27 @@
   "provincias": [
     {
       "nombre": "Chaco",
-      "matricula": "[PENDIENTE: confirmar]"
+      "matricula": "Habilitada y al día (confirmado por Octavio el 2026-10-27); número [PENDIENTE: confirmar]"
     },
     {
       "nombre": "Corrientes",
-      "matricula": "[PENDIENTE: confirmar]"
+      "matricula": "Habilitada y al día (confirmado por Octavio el 2026-10-27); número [PENDIENTE: confirmar]"
     },
     {
       "nombre": "Formosa",
-      "matricula": "[PENDIENTE: confirmar]"
+      "matricula": "Habilitada y al día (confirmado por Octavio el 2026-10-27); número [PENDIENTE: confirmar]"
     },
     {
       "nombre": "Misiones",
-      "matricula": "[PENDIENTE: confirmar]"
+      "matricula": "Habilitada y al día (confirmado por Octavio el 2026-10-27); número [PENDIENTE: confirmar]"
     },
     {
       "nombre": "Santa Fe",
-      "matricula": "[PENDIENTE: confirmar]"
+      "matricula": "Habilitada y al día (confirmado por Octavio el 2026-10-27); número [PENDIENTE: confirmar]"
     },
     {
       "nombre": "Córdoba",
-      "matricula": "[PENDIENTE: confirmar]"
+      "matricula": "Habilitada y al día (confirmado por Octavio el 2026-10-27); número [PENDIENTE: confirmar]"
     }
   ],
   "areasDePractica": [

@@ -65,6 +65,8 @@ def json_ld():
     return json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
 
 
+LOGO_ALTO = 324
+
 MENU = [
     # (destino, texto)
     ("/#estudio", "El Estudio"),
@@ -85,10 +87,7 @@ def encabezado(actual):
         for d, t in MENU
     )
     return f"""<header class="encabezado"><div class="contenedor">
-  <a class="marca" href="{enlace('/')}" aria-label="{esc(NOMBRE)} Abogados, inicio">
-    <span class="eg" aria-hidden="true">EG</span><span class="linea-v" aria-hidden="true"></span>
-    <span class="nombre" aria-hidden="true"><span>Estudio</span><span>Graciosi</span><span>Abogados</span></span>
-  </a>
+  <a class="marca" href="{enlace('/')}"><img src="{asset('img/logo.webp')}" width="900" height="{LOGO_ALTO}" alt="{esc(NOMBRE)} Abogados, inicio"></a>
   <button type="button" class="abrir-menu" aria-expanded="false" aria-controls="navegacion">Menú</button>
   <nav id="navegacion" aria-label="Menú principal"><ul class="menu">{items}</ul></nav>
 </div></header>"""
