@@ -93,9 +93,7 @@ a { color: inherit; }
 /* Bloque central */
 .central { text-align: center; padding-block: clamp(72px, 10vw, 132px); }
 .central .interior { max-width: 760px; margin: 0 auto; }
-.central h2 { font-size: clamp(30px, 3.6vw, 44px); font-weight: 800; margin-bottom: 28px; }
-.central p { margin-bottom: 20px; color: var(--texto); }
-.central .vision { margin-bottom: 36px; color: var(--navy); font-weight: 500; }
+.central .vision { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.4; font-weight: 500; letter-spacing: -0.015em; color: var(--navy); margin-bottom: 36px; }
 
 /* Cabecera de sección con flechas */
 .sec-cabecera { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 40px; }
@@ -167,3 +165,10 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Ícono de WhatsApp junto a cada número */
+.wa { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.ico-wa { flex: none; }
+.datos p { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.datos .wa { color: var(--navy); }
+.pie .wa { justify-content: center; }

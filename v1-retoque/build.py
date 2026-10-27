@@ -94,15 +94,24 @@ def encabezado(actual):
 </div></header>"""
 
 
+WHATSAPP = '<svg class="ico-wa" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>'
+
+
+def whatsapp_href(numero):
+    return "https://wa.me/" + telefono_href(numero).lstrip("+")
+
+
 def lineas_contacto():
     dom = DATOS["domicilio"]
     cp = dom["codigoPostal"]
     lineas = [f"{esc(dom['calle'])}, {dato(cp)} {esc(dom['ciudad'])}, {esc(dom['provincia'])}."]
     lineas += [f'Email: <a href="mailto:{esc(c)}">{esc(c)}</a>' for c in DATOS["correos"]]
     for t in DATOS["telefonos"]:
-        linea = f'Tel: <a href="tel:{telefono_href(t["numero"])}">{esc(t["numero"])}</a>'
+        num = f'<a href="tel:{telefono_href(t["numero"])}">{esc(t["numero"])}</a>'
         if t["whatsapp"] is True:
-            linea += f' · <a href="https://wa.me/{telefono_href(t["numero"]).lstrip("+")}">WhatsApp</a>'
+            linea = f'<a class="wa" href="{whatsapp_href(t["numero"])}" aria-label="Escribir por WhatsApp al {esc(t["numero"])}">{WHATSAPP}</a>{num}'
+        else:
+            linea = f"Tel: {num}"
         lineas.append(linea)
     if DATOS.get("horarios"):
         lineas.append(f"Horarios: {dato(DATOS['horarios'])}")
@@ -113,7 +122,7 @@ def pie():
     cuit = DATOS["cuit"]
     nav = "".join(f'<li><a href="{href(d)}">{esc(t)}</a></li>' for d, t in MENU)
     contacto = "".join(
-        f'<li><a href="https://wa.me/{telefono_href(t["numero"]).lstrip("+")}">WhatsApp {esc(t["numero"])}</a></li>'
+        f'<li><a class="wa" href="{whatsapp_href(t["numero"])}">{WHATSAPP}<span>{esc(t["numero"])}</span></a></li>'
         if t["whatsapp"] is True else f'<li><a href="tel:{telefono_href(t["numero"])}">{esc(t["numero"])}</a></li>'
         for t in DATOS["telefonos"]
     ) + "".join(f'<li><a href="mailto:{esc(c)}">{esc(c)}</a></li>' for c in DATOS["correos"])
@@ -203,12 +212,10 @@ SERVICIOS = {
     # Textos de la tarjeta por área (id de estudio.json). Recupero crediticio resume los servicios 01 a 03
     # del sitio actual; los textos de las cuatro áreas los fijó Octavio el 9/10/2026.
     "recupero-crediticio":
-        "Gestión integral de carteras en mora, en tres etapas. En la mora temprana se toma contacto inmediato con "
-        "el deudor por omnicanalidad, con un trato cordial que prioriza que se reincorpore al ciclo comercial de la "
-        "empresa. En la mora tardía se ponen de manifiesto las consecuencias legales y los mayores costos del "
-        "incumplimiento, se fijan plazos perentorios y se analiza la solvencia así como la localización del deudor. "
-        "Si la gestión extrajudicial no prospera, se inicia la vía judicial y se tramita la ejecución hasta el cobro "
-        "del crédito.",
+        "Nos mantenemos a la vanguardia de las tendencias en gestión de cobranzas y recupero crediticio, con un "
+        "enfoque sostenible centrado en el respeto en el trato, disciplina en la gestión, pensamiento estratégico y "
+        "compromiso con nuestros valores fundamentales. Recuperamos activos priorizando la ética, el trato cordial, "
+        "la honestidad y la búsqueda de soluciones viables, teniendo la certeza de que es la manera de obtener el éxito.",
     "derecho-comercial":
         "Asesoramiento y representación de empresas en asuntos comerciales, confección y revisión de contratos, "
         "defensas ante reclamos y demandas de diferente índole, análisis de incumplimientos, intervención en "
@@ -232,22 +239,22 @@ FOTOS_AREA = {
 }
 
 BANNERS = [
-    # (imagen, alt, título, texto, enlace, destino)
+    # (imagen, alt, título, texto, enlace, destino); textos de los banners fijados por Octavio el 27/10/2026
     ("banner-estela", "Estela de piedra con una figura sentada y otra de pie, en relieve",
-     "Estudio Graciosi",
-     "Somos un estudio especializado en derecho comercial, laboral y gestión de carteras de cobranzas.",
+     "Estudio líder en calidad, servicio y compromiso",
+     "Nuestra fortaleza es la atención personalizada, ágil, con un sólido conocimiento del panorama local.",
      "Quiénes somos", "/#estudio"),
     ("banner-mapa-nea", "Mapa de papel con la región del NEA en azul",
-     "Cobertura en la región",
-     "Brindamos cobertura en toda la zona NEA: Chaco, Corrientes, Formosa y Misiones.",
+     "Cobertura en la región NEA",
+     "Poseemos competencia en las provincias de Chaco, Corrientes, Formosa y Misiones, a lo que se adicionan Santa Fe y Córdoba para la rama de recupero de activos.",
      "Cobertura", "/#cobertura"),
     ("banner-columnas", "Estatua sentada frente a las columnas de un edificio de justicia",
      "Derecho comercial y recupero crediticio",
-     "Nos especializamos en gestión de carteras de cobranzas y recupero de activos.",
+     "Históricamente uno de los rubros principales del estudio, lo que nos llevó a transitar una vasta experiencia en gestión de carteras de cobranzas y recupero de activos, logrando alcanzar la actual excelencia en la materia.",
      "Áreas de práctica", "/#areas"),
     ("banner-justicia", "Figura de la Justicia con balanza y espada",
-     "Consultas",
-     "Las consultas se reciben por formulario, por teléfono y por WhatsApp.",
+     "Asesoramiento Estratégico",
+     "Brindamos nuestra expertise en los temas que se nos presentan, manteniendo el foco en ofrecer el más alto estándar de calidad y excelencia.",
      "Contacto", "/contacto"),
 ]
 
@@ -293,8 +300,7 @@ def cuerpo_inicio():
   <div class="banners-pista" data-desliza>{banners}</div>
   {FLECHAS}
 </div>
-<section class="central" id="estudio" aria-labelledby="t-estudio"><div class="contenedor"><div class="interior">
-  <h2 id="t-estudio">{esc(NOMBRE)}</h2>
+<section class="central" id="estudio" aria-label="El Estudio"><div class="contenedor"><div class="interior">
   <p class="vision">Combinamos una frondosa experiencia técnica con integridad de valores que nos caracterizan, a fin de ofrecer una prestación de excelencia que sea un valor agregado para nuestros clientes.</p>
   <a class="mas" href="{enlace('/contacto')}">Más info</a>
 </div></div></section>
@@ -303,7 +309,7 @@ def cuerpo_inicio():
   <div class="carrusel" data-desliza>{tarjetas}</div>
 </div></section>
 <section class="cobertura" id="cobertura" aria-labelledby="t-cobertura"><div class="contenedor cobertura-grilla">
-  <div><h2 id="t-cobertura">Cobertura</h2><p class="bajada">Provincias en las que actúa el Estudio, resaltadas en el mapa.</p></div>
+  <div><h2 id="t-cobertura">Cobertura</h2><p class="bajada">Provincias donde tenemos competencia con matrícula habilitada.</p></div>
   {mapa_provincias()}
 </div></section>"""
 
@@ -315,7 +321,7 @@ def cuerpo_contacto():
     accion = "" if FINAL else ' onsubmit="event.preventDefault()"'
     return f"""<section class="contacto"><div class="contenedor">
   <h1>Contacto</h1>
-  <p class="intro">{esc(NOMBRE)} brinda soluciones en el ámbito de la gestión de carteras de cobranzas y el recupero crediticio. Para recibir asesoramiento o realizar una consulta, el formulario y los datos de contacto del Estudio están a disposición.</p>
+  <p class="intro">Para recibir asesoramiento o realizar una consulta, se encuentra a disposición el siguiente formulario, así como los datos de contacto del Estudio.</p>
   <div class="contacto-grilla">
     <form id="formulario" class="formulario" name="contacto" method="post" action="{enlace('/gracias')}" data-netlify="true" netlify-honeypot="sitio-web"{accion}>
       <input type="hidden" name="form-name" value="contacto">
@@ -323,8 +329,6 @@ def cuerpo_contacto():
       <div><label for="nombre">Nombre</label><input id="nombre" name="nombre" placeholder="Nombre" autocomplete="name" required></div>
       <div><label for="correo">Email</label><input id="correo" name="correo" type="email" placeholder="Email" autocomplete="email" required></div>
       <div class="ancho"><label for="telefono">Teléfono</label><input id="telefono" name="telefono" type="tel" placeholder="Teléfono" autocomplete="tel"></div>
-      <div class="ancho"><label for="tipo">Tipo de consulta</label>
-        <select id="tipo" name="tipo"><option value="empresa">Empresa o entidad financiera</option><option value="corresponsalia">Estudio que busca corresponsal</option><option value="otra">Otra consulta</option></select></div>
       <div class="ancho"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea></div>
       <div class="ancho"><button class="boton" type="submit">Enviar mensaje</button>
         <p class="aviso">Enviar este formulario no genera una relación profesional con el Estudio. No se debe enviar documentación confidencial por esta vía.</p></div>

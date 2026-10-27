@@ -118,3 +118,16 @@
   - Cobertura: se quita el listado de provincias y se muestra un mapa de Argentina con las seis provincias de `estudio.json` resaltadas y rotuladas. Contornos de Natural Earth (dominio público), simplificados.
   - Nuevas fotos para las tarjetas: Derecho laboral (grabado de una audiencia) y Factoring (pluma sobre documentos). Se recortó el borde inferior de la foto de Derecho laboral, que traía una leyenda de numeración de banco de imágenes.
   - Pendiente: la foto de Derecho laboral parece una vista previa de Shutterstock (330 px, con leyenda). Hay que confirmar que Octavio tiene la licencia antes de publicar. La de Factoring viene de Unsplash.
+
+## 2026-10-27 (textos y contacto)
+
+- Textos de los banners, fijados por Octavio:
+  1. "Estudio líder en calidad, servicio y compromiso" y "Nuestra fortaleza es la atención personalizada, ágil, con un sólido conocimiento del panorama local." (Quiénes somos).
+  2. "Cobertura en la región NEA" y "Poseemos competencia en las provincias de Chaco, Corrientes, Formosa y Misiones, a lo que se adicionan Santa Fe y Córdoba para la rama de recupero de activos." (Cobertura). Reemplaza el texto anterior del banner de cobertura.
+  3. "Derecho comercial y recupero crediticio" y el texto sobre la experiencia en gestión de carteras de cobranzas y recupero de activos (Áreas de práctica).
+  4. "Asesoramiento Estratégico" y "Brindamos nuestra expertise en los temas que se nos presentan…" (Contacto). Reemplaza al banner "Consultas".
+- Bloque central: se elimina el título "Estudio Graciosi". Queda la frase "Combinamos una frondosa experiencia técnica…".
+- Cobertura: la bajada pasa a "Provincias donde tenemos competencia con matrícula habilitada." Las matrículas siguen como `[PENDIENTE: confirmar]` en `estudio.json`; hay que confirmarlas con Octavio antes de publicar.
+- Recupero crediticio: texto nuevo de Octavio ("Nos mantenemos a la vanguardia de las tendencias…"). Se corrigieron "mantenernos", "menra", "basta" (vasta) y "certeza que" (certeza de que).
+- Contacto: el texto introductorio queda solo con "Para recibir asesoramiento o realizar una consulta, se encuentra a disposición el siguiente formulario, así como los datos de contacto del Estudio." Se elimina el desplegable "Tipo de consulta" del formulario. El logo de WhatsApp reemplaza a "Tel:" y a "WhatsApp" en cada línea de teléfono, en Contacto y en el pie.
+- Aviso: los textos con "líder", "excelencia", "más alto estándar", "éxito" son afirmaciones de publicidad profesional. Octavio decidió usarlos; conviene revisarlos con las normas de los colegios de abogados antes de publicar.
