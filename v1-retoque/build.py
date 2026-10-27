@@ -60,6 +60,8 @@ def json_ld():
         "areaServed": [{"@type": "State", "name": p["nombre"]} for p in DATOS["provincias"]],
         "knowsAbout": [a["nombre"] for a in DATOS["areasDePractica"]],
     }
+    ld["founder"] = {"@type": "Person", "name": DATOS["titular"], "jobTitle": "Abogado", "url": DOMINIO,
+                     "worksFor": {"@type": "LegalService", "name": NOMBRE}}
     if not es_pendiente(dom["codigoPostal"]):
         ld["address"]["postalCode"] = dom["codigoPostal"]
     return json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
@@ -126,7 +128,7 @@ def pie():
         for t in DATOS["telefonos"]
     ) + "".join(f'<li><a href="mailto:{esc(c)}">{esc(c)}</a></li>' for c in DATOS["correos"])
     dom = DATOS["domicilio"]
-    legal = f"{esc(dom['calle'])}, {dato(dom['codigoPostal'])} {esc(dom['ciudad'])}, {esc(dom['provincia'])}."
+    legal = f"Titular: {esc(DATOS['titular'])}<br>{esc(dom['calle'])}, {dato(dom['codigoPostal'])} {esc(dom['ciudad'])}, {esc(dom['provincia'])}."
     if cuit:
         legal += f"<br>CUIT {dato(cuit)}"
     return f"""<footer class="pie"><div class="contenedor">
@@ -354,11 +356,11 @@ FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect w
 
 def construir():
     paginas = [
-        ("/", NOMBRE + " | Estudio de abogados en Resistencia, Chaco",
-         "Estudio especializado en gestión de carteras de cobranzas y recupero crediticio, derecho comercial, derecho laboral y factoring. Resistencia, Chaco.",
+        ("/", f"{NOMBRE} | {DATOS['titular']}, abogado en Resistencia, Chaco",
+         f"Estudio del abogado {DATOS['titular']}, en Resistencia, Chaco. Gestión de carteras de cobranzas y recupero crediticio, derecho comercial, derecho laboral y factoring.",
          cuerpo_inicio()),
         ("/contacto", "Contacto | " + NOMBRE,
-         f"Datos de contacto y formulario de consulta de {NOMBRE}, Don Bosco 137, Resistencia, Chaco.",
+         f"Datos de contacto y formulario de consulta de {NOMBRE} y del abogado {DATOS['titular']}, Don Bosco 137, Resistencia, Chaco.",
          cuerpo_contacto()),
     ]
     if SALIDA.exists():

@@ -138,3 +138,11 @@
 - Logo: se usa el archivo oficial de Octavio (`logo.webp`) en el encabezado, en lugar del logo armado con texto.
 - Se genera `dist/` y se publica en Netlify.
 - Formulario: Octavio pide que todas las consultas lleguen a `octaviograciosi@gmail.com`. El aviso se configura en el panel de Netlify; no cambia el sitio publicado.
+
+## 2026-10-27 (nombre en buscadores)
+
+- A pedido de Octavio, el nombre "Octavio Graciosi" aparece de forma expresa para los buscadores, siempre en texto visible o en datos estructurados (no se usa texto oculto, que los buscadores penalizan):
+  - Título de la portada: "Estudio Graciosi | Octavio Graciosi, abogado en Resistencia, Chaco".
+  - Descripción de la portada y de Contacto: mencionan al abogado Octavio Graciosi.
+  - Pie de página: "Titular: Octavio Graciosi".
+  - Datos estructurados (LegalService): se suma el fundador (`Person`, abogado, Octavio Graciosi), tomado del titular de `estudio.json`.
