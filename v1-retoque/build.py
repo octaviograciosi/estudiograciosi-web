@@ -242,7 +242,7 @@ FOTOS_AREA = {
 BANNERS = [
     # (imagen, alt, título, texto, enlace, destino); textos de los banners fijados por Octavio el 27/10/2026
     ("banner-estela", "Estela de piedra con una figura sentada y otra de pie, en relieve",
-     "Estudio líder en calidad, servicio y compromiso",
+     "Calidad, servicio y compromiso",
      "Nuestra fortaleza es la atención personalizada, ágil, con un sólido conocimiento del panorama local.",
      "Quiénes somos", "/#estudio"),
     ("banner-mapa-nea", "Mapa de papel con la región del NEA en azul",

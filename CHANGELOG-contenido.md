@@ -146,3 +146,7 @@
   - Descripción de la portada y de Contacto: mencionan al abogado Octavio Graciosi.
   - Pie de página: "Titular: Octavio Graciosi".
   - Datos estructurados (LegalService): se suma el fundador (`Person`, abogado, Octavio Graciosi), tomado del titular de `estudio.json`.
+
+## 2026-10-28
+
+- Banner 1: el título "Estudio líder en calidad, servicio y compromiso" pasa a "Calidad, servicio y compromiso", a pedido de Octavio. El texto de apoyo no cambia.
