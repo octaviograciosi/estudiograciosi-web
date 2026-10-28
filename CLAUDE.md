@@ -23,6 +23,12 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
 - **Se publican:** CUIT 20371576380, código postal H3500AHB y los dos teléfonos con WhatsApp.
 - **Fotos:** ver "Estilo nuevo". Antes del estilo nuevo solo se usaban fotos de la oficina; Octavio decidió que las nuevas fotos son definitivas. Queda anotado confirmar el derecho de uso.
 - **Skills de diseño (Emil Kowalski, licencia MIT):** instalados en `.claude/skills/`. Se usan para decisiones de diseño y animación del sitio (por ejemplo `emil-design-eng`, `animate`, `mobile-native`, `break-ui`). Se omitieron `animate-expo`, `write-swift` y `ask-sonner`, que no aplican a un sitio estático. Cuando un criterio de esos skills choque con lo que Octavio decidió o con el instructivo, manda Octavio.
+- **Próximos pasos (definidos por Octavio el 28/10/2026, en este orden):**
+  1. Alta en Google Workspace con el dominio estudiograciosi.com (correo propio). Octavio la hace; los registros DNS (TXT de verificación, MX, SPF, DKIM, DMARC) se cargan en Wix mientras el dominio siga ahí.
+  2. Corregir los correos en la web con las direcciones nuevas (se cambian en `estudio.json`) y apuntar el aviso del formulario de Netlify al correo que Octavio indique.
+  3. Contacto automático a estudios grandes de Buenos Aires, Córdoba y Santa Fe: ofrecer (a) convenios de gestión de cartera a estudios de cobranzas y (b) corresponsalía para la zona NEA. Se prepara con borradores que Octavio aprueba, y recién después de configurar SPF, DKIM y DMARC. Revisar antes las normas de publicidad de los colegios de abogados y la Ley 25.326.
+  4. **Último paso: salir del todo de Wix.** Transferir el dominio a otro registrador antes del 14/04/2027 (copiando antes todos los registros DNS) y verificar que el sitio y el correo sigan funcionando.
+  - Pendiente aparte: el cartel "Powered by Netlify" que muestra el plan gratuito (opción en Netlify: Project configuration, General, Powered by Netlify badge; si no está disponible, evaluar plan pago o mudar a otro hosting).
 - **Después de cada cambio:**
   1. Regenerar `dist/`.
   2. Revisar en computadora y en celular.
