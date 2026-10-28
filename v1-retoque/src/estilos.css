@@ -79,12 +79,15 @@ a { color: inherit; }
 .flechas button:disabled { opacity: .35; cursor: default; background: var(--blanco); color: var(--navy); }
 .banners .flechas { position: absolute; z-index: 2; left: 50%; bottom: 28px; transform: translateX(-50%); width: 100%; max-width: calc(var(--ancho) + 2 * var(--margen)); padding-inline: var(--margen); }
 @media (max-width: 760px) {
-  .banner { grid-template-rows: 260px auto; min-height: 0; }
-  .banner picture { grid-area: 1 / 1; }
-  .banner .texto { grid-area: 2 / 1; padding: 32px var(--margen) 96px; background: var(--fondo-suave); }
+  /* Celular: el texto va dentro del banner, sobre la imagen, con un velo claro que mantiene la lectura */
+  .banner { min-height: 600px; }
+  .banner::after { content: ""; grid-area: 1 / 1; z-index: 0; pointer-events: none; background: linear-gradient(to bottom, rgba(255, 255, 255, .88) 0%, rgba(255, 255, 255, .78) 45%, rgba(255, 255, 255, .25) 75%, rgba(255, 255, 255, 0) 100%); }
+  .banner .texto { grid-area: 1 / 1; align-self: start; padding: 36px var(--margen) 110px; background: none; }
   .banner .texto > div { max-width: none; }
-  .banner h1, .banner h2 { font-size: 30px; }
+  .banner h1, .banner h2 { font-size: 30px; margin-bottom: 16px; }
+  .banner p { font-size: 17px; margin-bottom: 22px; }
   .banners .flechas { bottom: 28px; }
+}
 }
 
 /* Bloque central */
