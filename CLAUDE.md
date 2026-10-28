@@ -29,7 +29,7 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
   3. Anotar el cambio en `CHANGELOG-contenido.md`.
   4. Hacer commit y push a `main`.
 - **Dominio (pendiente, en curso al 25/10/2026):**
-  - Decisión de Octavio: el dominio **se queda registrado en Wix** (cuesta unos US$ 20 por año, no justifica transferirlo; vence el 14/05/2027). Cloudflare quedó descartado: Wix no permite transferir directo y obliga a esperar 60 días.
+  - Decisión de Octavio: el dominio **se queda registrado en Wix** (cuesta unos US$ 20 por año; decisión original, reemplazada el 28/10/2026 por la de salir del todo de Wix). Cloudflare quedó descartado: Wix no permite transferir directo y obliga a esperar 60 días.
   - Netlify ya reconoció estudiograciosi.com como dominio del sitio `unrivaled-sorbet-f4d667`.
   - **Falta que Octavio cambie los registros DNS en Wix** (Dominios, estudiograciosi.com, Administrar registros DNS):
     1. Borrar los tres registros A `185.230.63.171`, `185.230.63.186` y `185.230.63.107`.
@@ -37,7 +37,9 @@ Esta sección resume las decisiones que Octavio tomó durante el trabajo. Cuando
     3. Cambiar el CNAME de `www` de `cdn3.wixdns.net` a `unrivaled-sorbet-f4d667.netlify.app`.
     4. No tocar el TXT de Facebook ni los nameservers `ns2/ns3.wixdns.net`.
   - Al 25/10/2026 esos registros todavía apuntaban a Wix. Cómo verificar: `curl "https://dns.google/resolve?name=estudiograciosi.com&type=A"` debe devolver `75.2.60.5`. Después confirmar que https://estudiograciosi.com muestre el sitio nuevo y que el candado (https) esté activo.
-  - Recién con la web nueva funcionando en el dominio, Octavio da de baja el **plan del sitio** de Wix (no el dominio).
+  - **Actualización del 28/10/2026:** los registros DNS ya están cargados y funcionan. https://www.estudiograciosi.com muestra el sitio nuevo con certificado (Let's Encrypt, renovación automática) y `estudiograciosi.com` redirige a `www`, que es el dominio principal en Netlify.
+  - **Plan Premium Light de Wix: dado de baja el 28/10/2026.** Sigue activo hasta el 14/05/2027 y no se renueva. El dominio es una suscripción aparte y sigue en Wix; según Wix renueva el 14/04/2027. Hay otro plan en Wix, "Cofinar", que no se tocó y no es del sitio del Estudio.
+  - **Pendiente para salir del todo de Wix:** transferir el dominio a otro registrador antes de la renovación del 14/04/2027 (desbloquear, pedir el código de transferencia, iniciar la transferencia). Al hacerlo, los DNS pasan al nuevo registrador: hay que copiar antes los registros actuales (A `75.2.60.5`, CNAME `www`, y los de Workspace cuando existan).
 - **Formulario:** activado en Netlify (Forms). La consulta de prueba llegó. Octavio pidió (27/10/2026) que todas las consultas del formulario lleguen a `octaviograciosi@gmail.com`. Esto se configura en el panel de Netlify (Forms, Form notifications, Add notification, Email notification), no en el código. Falta confirmar que lo cargó y que llegó una consulta de prueba.
 - **Pendientes menores:** confirmar el derecho de uso de las fotos antes de usarlas, decidir si va aviso de privacidad bajo el formulario, y definir si se agregan "Cómo trabajamos" y la cobertura por provincias (ver `REFERENCIAS-CONTENIDO.md`).
 

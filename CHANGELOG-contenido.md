@@ -151,3 +151,8 @@
 
 - Banner 1: el título "Estudio líder en calidad, servicio y compromiso" pasa a "Calidad, servicio y compromiso", a pedido de Octavio. El texto de apoyo no cambia.
 - Áreas de práctica: Factoring pasa a ir después de Recupero crediticio y antes de Derecho comercial (orden en `estudio.json`: Recupero crediticio, Factoring, Derecho comercial, Derecho laboral).
+
+## 2026-10-28 (dominio)
+
+- El dominio estudiograciosi.com ya sirve el sitio nuevo con https. Dominio principal en Netlify: `www.estudiograciosi.com`.
+- Octavio da de baja el plan Premium Light de Wix (activo hasta el 14/05/2027, sin renovación). El dominio sigue en Wix; queda pendiente transferirlo.
