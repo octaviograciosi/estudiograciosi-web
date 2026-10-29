@@ -159,6 +159,32 @@ SCRIPT = """<script>
     sig.addEventListener('click', function () { pista.scrollBy({ left: paso(), behavior: suave() }); });
     pista.addEventListener('scroll', actualizar, { passive: true });
     window.addEventListener('resize', actualizar); actualizar();
+    if (cont.hasAttribute('data-auto')) {
+      // cambio automático cada 4 s; las flechas dan la vuelta; se pausa con el mouse, el foco, el toque y la pestaña oculta
+      var quieto = window.matchMedia('(prefers-reduced-motion: reduce)'), pausado = false, reloj = null;
+      var avanzar = function (d) {
+        var n = pista.children.length, i = Math.round(pista.scrollLeft / pista.clientWidth) + d;
+        i = (i + n) % n;
+        pista.scrollTo({ left: i * pista.clientWidth, behavior: i === 0 && d > 0 ? 'auto' : suave() });
+      };
+      prev.disabled = false; sig.disabled = false;
+      pista.removeEventListener('scroll', actualizar); window.removeEventListener('resize', actualizar);
+      prev.addEventListener('click', function (e) { e.stopImmediatePropagation(); avanzar(-1); reiniciar(); }, true);
+      sig.addEventListener('click', function (e) { e.stopImmediatePropagation(); avanzar(1); reiniciar(); }, true);
+      var iniciar = function () { detener(); if (!quieto.matches && !pausado) reloj = setInterval(function () { avanzar(1); }, 4000); };
+      var detener = function () { clearInterval(reloj); reloj = null; };
+      var reiniciar = iniciar;
+      var pausar = function (v) { pausado = v; v ? detener() : iniciar(); };
+      cont.addEventListener('mouseenter', function () { pausar(true); });
+      cont.addEventListener('mouseleave', function () { pausar(false); });
+      cont.addEventListener('focusin', function () { pausar(true); });
+      cont.addEventListener('focusout', function () { pausar(false); });
+      cont.addEventListener('touchstart', function () { pausar(true); }, { passive: true });
+      cont.addEventListener('touchend', function () { setTimeout(function () { pausar(false); }, 4000); }, { passive: true });
+      document.addEventListener('visibilitychange', function () { pausar(document.hidden); });
+      quieto.addEventListener('change', iniciar);
+      iniciar();
+    }
   });
 })();
 </script>"""
@@ -297,7 +323,7 @@ def cuerpo_inicio():
     for a in DATOS["areasDePractica"]:
         foto, alt = FOTOS_AREA[a["id"]]
         tarjetas += f"""<article class="tarjeta" id="{a["id"]}"><img src="{asset('img/' + foto)}" width="900" height="600" loading="lazy" alt="{esc(alt)}"><h3>{esc(a["nombre"])}</h3><p>{esc(SERVICIOS[a["id"]])}</p><a class="mas" href="{enlace('/contacto')}">Más info<span class="sr-only"> sobre {esc(a["nombre"])}</span></a></article>"""
-    return f"""<div class="banners" data-pista aria-roledescription="carrusel" aria-label="Mensajes principales">
+    return f"""<div class="banners" data-pista data-auto aria-roledescription="carrusel" aria-label="Mensajes principales">
   <div class="banners-pista" data-desliza>{banners}</div>
   {FLECHAS}
 </div>
