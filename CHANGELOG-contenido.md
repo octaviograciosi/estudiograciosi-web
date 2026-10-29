@@ -156,3 +156,8 @@
 
 - El dominio estudiograciosi.com ya sirve el sitio nuevo con https. Dominio principal en Netlify: `www.estudiograciosi.com`.
 - Octavio da de baja el plan Premium Light de Wix (activo hasta el 14/05/2027, sin renovación). El dominio sigue en Wix; queda pendiente transferirlo.
+
+## 2026-10-29
+
+- Banner 1: se reemplaza la foto de la estela por la nueva que eligió Octavio (misma posición y mismo texto).
+- La variante con el texto dentro del banner en el celular (rama `banner-mobile-dentro`) queda sin publicar: Octavio decidió no usarla por ahora.
