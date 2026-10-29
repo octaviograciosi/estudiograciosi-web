@@ -161,3 +161,5 @@
 
 - Banner 1: se reemplaza la foto de la estela por la nueva que eligió Octavio (misma posición y mismo texto).
 - La variante con el texto dentro del banner en el celular (rama `banner-mobile-dentro`) queda sin publicar: Octavio decidió no usarla por ahora.
+
+- Banners: se reemplazan las cuatro fotos por las de la carpeta "para banner" de Octavio (banner 1 estela, 2 mapa NEA, 3 columnas, 4 figura de la Justicia). Mismos textos y mismo orden.
