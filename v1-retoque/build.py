@@ -150,6 +150,34 @@ SCRIPT = """<script>
     nav.classList.toggle('abierto', !abierto);
   });
   nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') { nav.classList.remove('abierto'); boton.setAttribute('aria-expanded', 'false'); } });
+  var ban = document.querySelector('[data-banners]');
+  if (ban) {
+    var pista = ban.querySelector('[data-desliza]'), puntos = ban.querySelectorAll('[data-ir]'), actual = -1;
+    var quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var marcar = function (n) {
+      if (n === actual) return;
+      actual = n;
+      puntos.forEach(function (p, i) { if (i === n) p.setAttribute('aria-current', 'true'); else p.removeAttribute('aria-current'); });
+      var barra = puntos[n].firstElementChild; barra.style.animation = 'none'; void barra.offsetWidth; barra.style.animation = '';
+    };
+    var ir = function (n, suave) { pista.scrollTo({ left: n * pista.clientWidth, behavior: suave && !quieto.matches ? 'smooth' : 'auto' }); marcar(n); };
+    puntos.forEach(function (p) { p.addEventListener('click', function () { ir(Number(p.dataset.ir), true); }); });
+    var pendiente = null;
+    pista.addEventListener('scroll', function () {
+      clearTimeout(pendiente);
+      pendiente = setTimeout(function () { marcar(Math.round(pista.scrollLeft / pista.clientWidth)); }, 80);
+    }, { passive: true });
+    puntos.forEach(function (p) {
+      p.firstElementChild.addEventListener('animationend', function () { ir((actual + 1) % puntos.length, true); });
+    });
+    // cambio automático cada 4 s, salvo que la persona prefiera menos movimiento; se pausa con el mouse, el foco o el toque
+    var activar = function () { ban.classList.toggle('auto', !quieto.matches); };
+    activar(); quieto.addEventListener('change', activar);
+    ban.addEventListener('touchstart', function () { ban.classList.add('pausa'); }, { passive: true });
+    ban.addEventListener('touchend', function () { setTimeout(function () { ban.classList.remove('pausa'); }, 4000); }, { passive: true });
+    document.addEventListener('visibilitychange', function () { ban.classList.toggle('pausa', document.hidden); });
+    marcar(0);
+  }
   document.querySelectorAll('[data-pista]').forEach(function (cont) {
     var pista = cont.querySelector('[data-desliza]'), prev = cont.querySelector('[data-prev]'), sig = cont.querySelector('[data-sig]');
     var suave = function () { return window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'; };
@@ -297,9 +325,13 @@ def cuerpo_inicio():
     for a in DATOS["areasDePractica"]:
         foto, alt = FOTOS_AREA[a["id"]]
         tarjetas += f"""<article class="tarjeta" id="{a["id"]}"><img src="{asset('img/' + foto)}" width="900" height="600" loading="lazy" alt="{esc(alt)}"><h3>{esc(a["nombre"])}</h3><p>{esc(SERVICIOS[a["id"]])}</p><a class="mas" href="{enlace('/contacto')}">Más info<span class="sr-only"> sobre {esc(a["nombre"])}</span></a></article>"""
-    return f"""<div class="banners" data-pista aria-roledescription="carrusel" aria-label="Mensajes principales">
+    puntos = "".join(
+        f'<button type="button" class="punto-b" data-ir="{n}" aria-label="Ir al mensaje {n + 1} de {len(BANNERS)}"><i aria-hidden="true"></i></button>'
+        for n in range(len(BANNERS))
+    )
+    return f"""<div class="banners" data-banners aria-roledescription="carrusel" aria-label="Mensajes principales">
   <div class="banners-pista" data-desliza>{banners}</div>
-  {FLECHAS}
+  <div class="puntos" role="group" aria-label="Cambiar de mensaje">{puntos}</div>
 </div>
 <section class="central" id="estudio" aria-label="El Estudio"><div class="contenedor"><div class="interior">
   <p class="vision">Combinamos una frondosa experiencia técnica con integridad de valores que nos caracterizan, a fin de ofrecer una prestación de excelencia que sea un valor agregado para nuestros clientes.</p>
