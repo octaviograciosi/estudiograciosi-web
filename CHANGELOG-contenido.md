@@ -167,3 +167,7 @@
 ## 2026-10-30
 
 - Banners: el alto baja de unos 770 px a unos 460 px en computadora (y se achica en el celular). Los cuatro mensajes cambian solos cada 4 segundos, con las flechas como antes. Se pausan con el mouse, el foco del teclado, el toque y la pestaña en segundo plano, y no se mueven solos si la persona tiene activado "reducir movimiento". El cuadro de texto nunca pasa del 42 % del ancho de la pantalla (tope 520 px). Esto reemplaza al "cambio manual, sin cambio automático" anterior, por decisión de Octavio.
+
+## 2026-10-31
+
+- Banners: se agranda un poco el alto, de unos 450 px a unos 520 px en una pantalla de 1366 px (mínimo 420 px, máximo 540 px). En el celular la foto pasa de 210 a 240 px de alto. Siguen la altura fija y el cambio automático cada 4 segundos.
