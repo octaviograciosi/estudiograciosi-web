@@ -163,3 +163,7 @@
 - La variante con el texto dentro del banner en el celular (rama `banner-mobile-dentro`) queda sin publicar: Octavio decidió no usarla por ahora.
 
 - Banners: se reemplazan las cuatro fotos por las de la carpeta "para banner" de Octavio (banner 1 estela, 2 mapa NEA, 3 columnas, 4 figura de la Justicia). Mismos textos y mismo orden.
+
+## 2026-10-30
+
+- Banners: el alto baja de unos 770 px a unos 460 px en computadora (y se achica en el celular). Los cuatro mensajes cambian solos cada 4 segundos, con las flechas como antes. Se pausan con el mouse, el foco del teclado, el toque y la pestaña en segundo plano, y no se mueven solos si la persona tiene activado "reducir movimiento". El cuadro de texto nunca pasa del 42 % del ancho de la pantalla (tope 520 px). Esto reemplaza al "cambio manual, sin cambio automático" anterior, por decisión de Octavio.

@@ -62,16 +62,17 @@ a { color: inherit; }
   .menu a { display: block; padding: 16px 0; border-bottom: 0; font-size: 17px; }
 }
 
-/* Banners: texto a la izquierda, imagen a la derecha, cambio manual */
+/* Banners: texto a la izquierda, imagen a la derecha; cambian solos cada 4 s y con las flechas */
 .banners { position: relative; background: var(--fondo-suave); }
 .banners-pista { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .banners-pista::-webkit-scrollbar { display: none; }
-.banner { position: relative; flex: 0 0 100%; scroll-snap-align: start; display: grid; min-height: clamp(440px, 41vw, 600px); }
-.banner picture, .banner img { grid-area: 1 / 1; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
-.banner .texto { grid-area: 1 / 1; align-self: center; z-index: 1; width: 100%; max-width: calc(var(--ancho) + 2 * var(--margen)); margin: 0 auto; padding: 56px var(--margen) 88px; }
-.banner .texto > div { max-width: 520px; }
-.banner h1, .banner h2 { color: var(--navy-oscuro); font-size: clamp(32px, 3.5vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 22px; }
-.banner p { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; color: var(--texto); margin-bottom: 30px; }
+.banner { position: relative; flex: 0 0 100%; scroll-snap-align: start; display: grid; min-height: clamp(380px, 33vw, 470px); }
+.banner picture { position: absolute; inset: 0; }
+.banner img { width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+.banner .texto { grid-area: 1 / 1; align-self: center; z-index: 1; width: 100%; max-width: calc(var(--ancho) + 2 * var(--margen)); margin: 0 auto; padding: 40px var(--margen) 104px; }
+.banner .texto > div { max-width: min(520px, 42vw); }
+.banner h1, .banner h2 { color: var(--navy-oscuro); font-size: clamp(32px, 3.5vw, 46px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 18px; }
+.banner p { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; color: var(--texto); margin-bottom: 24px; }
 .banner .mas { color: var(--navy-oscuro); }
 .flechas { display: flex; gap: 10px; }
 .flechas button { width: 44px; height: 44px; display: grid; place-items: center; background: var(--blanco); border: 1px solid var(--navy); color: var(--navy); cursor: pointer; transition: background-color .2s, color .2s, transform 160ms ease-out; }
@@ -79,11 +80,12 @@ a { color: inherit; }
 .flechas button:disabled { opacity: .35; cursor: default; background: var(--blanco); color: var(--navy); }
 .banners .flechas { position: absolute; z-index: 2; left: 50%; bottom: 28px; transform: translateX(-50%); width: 100%; max-width: calc(var(--ancho) + 2 * var(--margen)); padding-inline: var(--margen); }
 @media (max-width: 760px) {
-  .banner { grid-template-rows: 260px auto; min-height: 0; }
-  .banner picture { grid-area: 1 / 1; }
-  .banner .texto { grid-area: 2 / 1; padding: 32px var(--margen) 96px; background: var(--fondo-suave); }
+  .banner { grid-template-rows: 210px auto; min-height: 0; }
+  .banner picture { position: relative; inset: auto; grid-area: 1 / 1; height: 210px; }
+  .banner .texto { grid-area: 2 / 1; padding: 24px var(--margen) 88px; background: var(--fondo-suave); }
   .banner .texto > div { max-width: none; }
-  .banner h1, .banner h2 { font-size: 30px; }
+  .banner h1, .banner h2 { font-size: 28px; margin-bottom: 12px; }
+  .banner p { margin-bottom: 18px; }
   .banners .flechas { bottom: 28px; }
 }
 
