@@ -265,6 +265,9 @@ FOTOS_AREA = {
     "factoring": ("area-factoring.webp", "Pluma estilográfica sobre documentos en un escritorio"),
 }
 
+# Encuadre vertical de cada foto (por defecto, alineada arriba): números más altos muestran más de la parte de abajo
+POSICION_FOTO = {"banner-mapa-nea": "right 15%", "banner-justicia": "right 25%"}
+
 BANNERS = [
     # (imagen, alt, título, texto, enlace, destino); textos de los banners fijados por Octavio el 27/10/2026
     ("banner-estela", "Estela de piedra con una figura sentada y otra de pie, en relieve",
@@ -315,8 +318,10 @@ def cuerpo_inicio():
     for n, (img, alt, titulo, texto, enl, dest) in enumerate(BANNERS):
         h = "h1" if n == 0 else "h2"
         carga = "" if n == 0 else ' loading="lazy"'
+        pos = POSICION_FOTO.get(img)
+        estilo = f' style="object-position: {pos}"' if pos else ""
         banners += f"""<section class="banner" aria-roledescription="diapositiva" aria-label="{n + 1} de {len(BANNERS)}">
-  <picture><img src="{asset('img/' + img + '-1600.webp')}" srcset="{asset('img/' + img + '-800.webp')} 800w, {asset('img/' + img + '-1600.webp')} 1600w" sizes="100vw" width="1600" height="900" alt="{esc(alt)}"{carga}></picture>
+  <picture><img src="{asset('img/' + img + '-1600.webp')}" srcset="{asset('img/' + img + '-800.webp')} 800w, {asset('img/' + img + '-1600.webp')} 1600w" sizes="100vw" width="1600" height="900" alt="{esc(alt)}"{carga}{estilo}></picture>
   <div class="texto"><div><{h}>{esc(titulo)}</{h}><p>{esc(texto)}</p><a class="mas" href="{href(dest)}">{esc(enl)}</a></div></div>
 </section>"""
     tarjetas = ""

@@ -176,3 +176,4 @@
 
 - Banners: el encuadre de las fotos ahora prioriza la parte superior (se recorta la parte de abajo en lugar de la de arriba), para que no queden cortadas las cabezas de las figuras. Vale para computadora y celular.
 - Banners: se agrandan un poco hacia abajo (de unos 520 px a unos 590 px en una pantalla de 1366 px; mínimo 460 px, máximo 600 px) para mostrar más de cada figura. El encuadre sigue alineado arriba.
+- Banners 2 y 4: el encuadre de la foto sube un poco (se ve más de la parte de abajo): mapa NEA al 15 % y figura de la Justicia al 25 % desde arriba. Los banners 1 y 3 siguen alineados arriba.
