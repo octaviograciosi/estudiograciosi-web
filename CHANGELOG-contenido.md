@@ -171,3 +171,7 @@
 ## 2026-10-31
 
 - Banners: se agranda un poco el alto, de unos 450 px a unos 520 px en una pantalla de 1366 px (mínimo 420 px, máximo 540 px). En el celular la foto pasa de 210 a 240 px de alto. Siguen la altura fija y el cambio automático cada 4 segundos.
+
+## 2026-11-05
+
+- Banners: el encuadre de las fotos ahora prioriza la parte superior (se recorta la parte de abajo en lugar de la de arriba), para que no queden cortadas las cabezas de las figuras. Vale para computadora y celular.
